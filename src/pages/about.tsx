@@ -9,7 +9,7 @@ import Section from '../components/Section'
 
 const AboutPage = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="About Richard" />
     <Section style={{ position: 'relative', padding: '6rem 0' }}>
       <Container>
         <h1>Hi people</h1>

@@ -1,97 +1,83 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+# richardnguyen.github.io
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/86736185-93d8-454a-b6d9-9f0d77687f40/deploy-status)](https://app.netlify.com/sites/richardnguyen99/deploys)
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
+A personal website of Richard Nguyen and this is its source code. This website is written in [Gatsby](https://www.gatsbyjs.org/), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/) and [Styled-components](https://www.styled-components.com/).
 
-## 🚀 Quick start
+_Notes: Richard open-sources his website to share the structure, the configurations, and how he organizes all of those things. He hopes that it could help some people are having troubles in writing their very first sites (in Gatsby and stuff). However, the website is highly customized to match his desires, so it could be a little frustrating to modify the codes to your version. But he will be happy if you do so. Not only will you improve your coding skills but also respect him and what he's doing._
 
-1.  **Create a Gatsby site.**
+## Usage
 
-    Use the Gatsby CLI to create a new site, specifying the default starter.
+1. Clone the repository
 
-    ```shell
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
+   ```shell
+     git clone https://github.com/richardnguyen99/richardnguyen99.github.io
+   ```
 
-1.  **Start developing.**
+2. Know the structure
 
-    Navigate into your new site’s directory and start it up.
+   Before getting your hands on, Richard would like to tell you more about how he organizes stuff. Richard only explains his stuff. Others can be seen at [gatsby-starter-default](https://github.com/gatsbyjs/gatsby-starter-default)
 
-    ```shell
-    cd my-default-starter/
-    gatsby develop
-    ```
+   - In the root directory:
 
-1.  **Open the source code and start editing!**
+     - **_.editorconfig_**: a set of consistent formatting styles for the whole project.
 
-    Your site is now running at `http://localhost:8000`!
+     - **_.eslintrc.js_**: a tool to check all Javascript errors and fix them.
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+     - **_.eslintignore_**: a list of files and folders that ESLint will ignore.
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+     - **_.huskyrc_**: a pre-commit hook script to prevent bad commits.
 
-## 🧐 What's inside?
+     - **_.lintstagedrc_**: a linter linting files on staged.
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+     - **_.stylelintrc_**: a tool like ESLint but for CSS.
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+     - **_tsconfig.json_**: a set of rules and configurations for Typescript compiler.
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+   - In the source directory:
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+     - **_@types/_**: customized type definitions.
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+     - **_components/_**: reusable components.
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+     - **\_contexts/\_\_**: React context (theme, languagues, etc.).
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+     - **_hooks/_**: customized React hooks.
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
+     - \***\*images/\*\***: images for displaying content of the website.
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+     - \***\*pages/\*\***: contents will be displayed on the website
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
+     - \***\*utils/\*\***: sets of tools to help in development process.
 
-9.  **`LICENSE`**: Gatsby is licensed under the MIT license.
+     - \***\*types.ts\*\***: list of types and interfaces.
 
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
+3. Play around:
 
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
+   Development:
 
-12. **`README.md`**: A text file containing useful reference information about your project.
+   ```shell
+     yarn develop
+   ```
 
-## 🎓 Learning Gatsby
+   Production:
 
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
+   ```shell
+     yarn build
+   ```
 
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
+4. Deploy:
 
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
+Currently, this website is being deployed to [Netlify](https://www.netlify.com/) (free for static website), so the script `yarn deploy` won't work properly (You can try if you still want to).
 
-## 💫 Deploy
+## Authors
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+- [Richard Nguyen](https://github.com/richardnguyen99)
 
-<!-- AUTO-GENERATED-CONTENT:END -->
+## Contribution & Contact
+
+If you found any problems or issues, please feel free to open a pull request to fix that. Richard would be happy if there were someone improving the website with him. If a pull request is unnecessary, you contact him with:
+
+- Github: <https://github.com/richardnguyen99>
+- Reddit: <https://www.reddit.com/user/HieuNguyen990616>
+- Twitter: <https://twitter.com/Richard86159584>
