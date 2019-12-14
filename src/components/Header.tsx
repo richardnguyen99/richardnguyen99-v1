@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
       <Navbar transparent={transparent}>
         <Container>
           <Brand as={Link} to="/">
-            {siteTitle}
+            Richard
           </Brand>
           <Toggler onClick={handleClick}>
             <Octicon icon={ChevronDown}/>
