@@ -6,6 +6,8 @@ const Nav = styled.ul`
   flex-direction: column;
 
   list-style: none;
+  height: 100%;
+  margin: 0 0 0 auto;
 `
 
 export default Nav

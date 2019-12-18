@@ -1,5 +1,6 @@
-import styled, { keyframes } from 'styled-components'
-import NavLink from './NavLink'
+import styled, { keyframes, Keyframes } from 'styled-components'
+
+import NavItem from './NavItem'
 
 export interface CollapseProps {
   show: boolean
@@ -49,20 +50,24 @@ const Collapse = styled.div<CollapseProps>`
     height: auto;
 
     padding: 1.5rem;
-    border: 1px solid var(--Theme-Navbar--Border__onScroll);
+    border: var(--Theme-Border__onScroll);
     border-radius: 0.5rem;
-    box-shadow: 1px 2px 18px var(--Theme-Navbar--BoxShadow__onScroll);
+    box-shadow: var(--Theme-BoxShadow__onScroll);
     background: var(--Theme-Navbar--Background);
-    animation: ${props => (props.collapsed ? showDropdown : hideDropdown)} 300ms
-      ease forwards;
-    opacity: ${props => (!props.show ? 0 : 1)};
+    animation: ${(props): Keyframes =>
+        props.collapsed ? showDropdown : hideDropdown}
+      300ms ease forwards;
+    opacity: ${(props): number => (!props.show ? 0 : 1)};
 
-    ${NavLink} {
-      padding: 0;
+    ${NavItem} {
+      padding-top: 0.5rem;
+      padding-right: 0rem;
+      padding-bottom: 0.5rem;
+      padding-left: 0rem;
     }
   }
 
-  display: ${props => (!props.show ? `none` : ``)};
+  display: ${(props): string => (!props.show ? `none` : ``)};
 `
 
 export default Collapse

@@ -45,8 +45,8 @@ const SEO: React.FC<SEOProps> = ({
       author,
       twitter,
       github,
-      linkedin
-    }
+      linkedin,
+    },
   } = site
 
   // This will tell SEO components to use passed props or default data from query
@@ -54,7 +54,7 @@ const SEO: React.FC<SEOProps> = ({
     title: title || defaultTitle,
     description: description || defaultDescription,
     image: `${siteUrl}${banner || defaultBanner}`,
-    url: `${siteUrl}${pathname || ''}`
+    url: `${siteUrl}${pathname || ''}`,
   }
 
   // SEO for Google Search Engine. More information:
@@ -70,26 +70,26 @@ const SEO: React.FC<SEOProps> = ({
     name: defaultTitle,
     author: {
       '@type': 'Person',
-      name: author
+      name: author,
     },
     copyrightHolder: {
       '@type': 'Person',
-      name: author
+      name: author,
     },
     copyrightYear: '2019',
     creator: {
       '@type': 'Person',
-      name: author
+      name: author,
     },
     publisher: {
       '@type': 'Person',
-      name: author
+      name: author,
     },
     dateModified: buildTime,
     image: {
       '@type': 'ImageObject',
-      url: `${siteUrl}${defaultBanner}`
-    }
+      url: `${siteUrl}${defaultBanner}`,
+    },
   }
 
   const itemListElement = [
@@ -97,10 +97,10 @@ const SEO: React.FC<SEOProps> = ({
       '@type': 'ListItem',
       item: {
         '@id': siteUrl,
-        name: 'Homepage'
+        name: 'Homepage',
       },
-      position: 1
-    }
+      position: 1,
+    },
   ]
 
   let schemaArticle = null
@@ -111,24 +111,24 @@ const SEO: React.FC<SEOProps> = ({
       '@type': 'Article',
       author: {
         '@type': 'Person',
-        name: author
+        name: author,
       },
       copyrightHolder: {
         '@type': 'Person',
-        name: author
+        name: author,
       },
       copyrightYear: '2019',
       creator: {
         '@type': 'Person',
-        name: author
+        name: author,
       },
       publisher: {
         '@type': 'Organization',
         name: author,
         logo: {
           '@type': 'ImageObject',
-          url: `${siteUrl}${defaultBanner}`
-        }
+          url: `${siteUrl}${defaultBanner}`,
+        },
       },
       description: seo.description,
       headline: seo.title,
@@ -137,18 +137,18 @@ const SEO: React.FC<SEOProps> = ({
       name: seo.title,
       image: {
         '@type': 'ImageObject',
-        url: seo.image
+        url: seo.image,
       },
-      mainEntityOfPage: seo.url
+      mainEntityOfPage: seo.url,
     }
 
     itemListElement.push({
       '@type': 'ListItem',
       item: {
         '@id': seo.url,
-        name: seo.title
+        name: seo.title,
       },
-      position: 2
+      position: 2,
     })
   }
 
@@ -157,11 +157,11 @@ const SEO: React.FC<SEOProps> = ({
     '@type': 'BreadcrumbList',
     description: 'Breadcrumbs list',
     name: 'Breadcrumbs',
-    itemListElement
+    itemListElement,
   }
 
   return (
-    <React.Fragment>
+    <>
       <Helmet title={seo.title}>
         <html lang={siteLanguage} />
         <meta name="description" content={seo.description} />
@@ -178,7 +178,7 @@ const SEO: React.FC<SEOProps> = ({
         <meta name="twitter:description" content={seo.description} />
         <meta name="twitter:image" content={seo.image} />
       </Helmet>
-    </React.Fragment>
+    </>
   )
 }
 

@@ -1,11 +1,8 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useState,
-  useEffect,
-  useMemo
-} from 'react'
-import { DefaultTheme } from 'styled-components'
+/* eslint-disable react-hooks/rules-of-hooks */
+// ESLint won't let me survive without this :(
+
+import { Dispatch, SetStateAction, useState, useEffect, useMemo } from 'react'
+
 /**
  *
  * @param storage
@@ -25,23 +22,35 @@ const getValue = <TValue>(storage: Storage, key: string): TValue | null => {
  * @param key
  * @param initialValue
  */
-const saveValue = <TValue>(storage: Storage, key: string, initialValue: TValue): TValue => useMemo(() => {
-  const value = getValue<TValue>(storage, key)
-  return value !== null ? value : initialValue
-}, [key, storage, initialValue])
+const saveValue = <TValue>(
+  storage: Storage,
+  key: string,
+  initialValue: TValue
+): TValue =>
+  useMemo(() => {
+    const value = getValue<TValue>(storage, key)
+    return value !== null ? value : initialValue
+  }, [key, storage, initialValue])
 
-const setValue = async <TValue>(storage: Storage, key: string, value: TValue): Promise<void> => new Promise(
-  (resolve, reject) => {
+const setValue = async <TValue>(
+  storage: Storage,
+  key: string,
+  value: TValue
+): Promise<void> =>
+  new Promise((resolve, reject) => {
     try {
       storage.setItem(key, JSON.stringify(value))
       resolve()
     } catch (error) {
       reject(error)
     }
-  }
-)
+  })
 
-const handleSetLocalStorage = <TValue>(storage: Storage, key: string, value: TValue): Error | undefined => {
+const handleSetLocalStorage = <TValue>(
+  storage: Storage,
+  key: string,
+  value: TValue
+): Error | undefined => {
   const [error, setError] = useState<Error | undefined>(undefined)
 
   useEffect(() => {
@@ -55,7 +64,10 @@ const handleSetLocalStorage = <TValue>(storage: Storage, key: string, value: TVa
   return error
 }
 
-const handleChangeLocalStorage = <TValue>(key: string, setChange: Dispatch<SetStateAction<TValue>>): void => {
+const handleChangeLocalStorage = <TValue>(
+  key: string,
+  setChange: Dispatch<SetStateAction<TValue>>
+): void => {
   const onChangeLocalStorage = (e: StorageEvent): void => {
     if (e.key === key) {
       setChange((e.newValue !== null ? JSON.parse(e.newValue) : null) as TValue)
@@ -65,7 +77,7 @@ const handleChangeLocalStorage = <TValue>(key: string, setChange: Dispatch<SetSt
   useEffect(() => {
     window.addEventListener('storage', onChangeLocalStorage)
 
-    return () => {
+    return (): void => {
       window.removeEventListener('storage', onChangeLocalStorage)
     }
   })
@@ -89,19 +101,23 @@ const useLocalStorage = <TValue>(
 
   // Get inital values stored in local storage,
   // If values didn't exist, get initalValue param.
-  const savedValue = storage !== null ? saveValue(storage, key, initialValue) : initialValue
+  const savedValue =
+    storage !== null ? saveValue(storage, key, initialValue) : initialValue
 
   // Get value and set value immediately via SetState method
-  const [value, setValue] = useState<TValue>(savedValue)
+  const [storageValue, setStorageValue] = useState<TValue>(savedValue)
 
   // Handle set value from value state,
   // When setValue is triggered, it will update
   // value state and pass to this to handle settings
-  const errorFromLocalStorage = storage !== null ? handleSetLocalStorage<TValue>(storage, key, value) : undefined
+  const errorFromLocalStorage =
+    storage !== null
+      ? handleSetLocalStorage<TValue>(storage, key, storageValue)
+      : undefined
 
-  handleChangeLocalStorage<TValue>(key, setValue)
+  handleChangeLocalStorage<TValue>(key, setStorageValue)
 
-  return [value, setValue, errorFromLocalStorage]
+  return [storageValue, setStorageValue, errorFromLocalStorage]
 }
 
 export default useLocalStorage

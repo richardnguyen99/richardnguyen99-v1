@@ -1,13 +1,9 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: './tsconfig.json',
-    tsconfigRootDir: '.'
-  },
   env: {
     browser: true,
     node: true,
-    es6: true
+    es6: true,
   },
   plugins: ['@typescript-eslint', 'react-hooks', 'prettier'],
   extends: [
@@ -15,7 +11,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:import/typescript',
     'plugin:prettier/recommended',
-    'prettier/@typescript-eslint'
+    'prettier/@typescript-eslint',
   ],
   rules: {
     /**
@@ -36,25 +32,38 @@ module.exports = {
       'error',
       {
         allowShortCircuit: true,
-        allowTernary: true
-      }
+        allowTernary: true,
+      },
     ], // https://eslint.org/docs/rules/no-unused-expressions
 
     /**
      * @description rules of @typescript-eslint
      */
-    '@typescript-eslint/prefer-interface': 'error',
-    '@typescript-eslint/explicit-function-return-type': 'error',
-
+    '@typescript-eslint/explicit-function-return-type': [
+      'error',
+      {
+        allowTypedFunctionExpressions: true,
+      },
+    ],
     /**
      * @description rules of eslint-plugin-react
      */
     'react/jsx-filename-extension': [
       'error',
       {
-        extensions: ['.jsx', '.tsx']
-      }
+        extensions: ['.jsx', '.tsx'],
+      },
     ], // also want to use with ".tsx"
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
     'react/prop-types': 'off', // Is this incompatible with TS props type?
 
     /**
@@ -69,16 +78,16 @@ module.exports = {
       'error',
       {
         singleQuote: true,
-        semi: false
-      }
-    ]
+        semi: false,
+      },
+    ],
   },
   overrides: [
     {
       files: ['**/*.js'],
       rules: {
-        strict: 'off'
-      }
-    }
-  ]
+        strict: 'off',
+      },
+    },
+  ],
 }

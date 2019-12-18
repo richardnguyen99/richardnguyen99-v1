@@ -15,14 +15,35 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
 
     /* Create root variables to avoid styling with props */
-    --Theme-Body--Background: ${props => props.theme.mode === 'light' ? '#dae0e6' : '#030303'};
-    --Theme-Body--Text: ${props => props.theme.mode === 'light' ? '#222222' : '#d7dadc'};
-    --Theme-Navbar--Background: ${props => props.theme.mode === 'light' ? '#ffffff' : '#1a1a1b'};
-    --Theme-Navbar--Border__onScroll: ${props => props.theme.mode === 'dark' ? '#343536' : 'none'};
-    --Theme-Navbar--BoxShadow__onScroll: ${props => props.theme.mode === 'light' ? 'rgba(0, 0, 0, 0.1)' : 'none'};
-    --Theme-NavbarLink--Color: ${props => props.theme.mode === 'light' ? '#222222' : '#d7dadc'};
-    --Theme-NavbarLink--Color__onHover: ${props => props.theme.mode === 'light' ? '#1c1c1c' : '#d7dadc'};
+    --Theme-Body--Background: ${(props): string =>
+      props.theme.mode === 'light' ? '#dae0e6' : '#030303'};
+    --Theme-Body--Text: ${(props): string =>
+      props.theme.mode === 'light' ? '#222222' : '#d7dadc'};
+    --Theme-Navbar--Background: ${(props): string =>
+      props.theme.mode === 'light' ? '#ffffff' : '#030303'};
+    --Theme-Border__onScroll: ${(props): string =>
+      props.theme.mode === 'dark' ? '1px solid #343536' : 'none'};
+    --Theme-BoxShadow__onScroll: ${(props): string =>
+      props.theme.mode === 'light'
+        ? '0px 10px 30px rgba(57, 56, 61, 0.205)'
+        : 'none'};
+    --Theme-NavLink--Color: ${(props): string =>
+      props.theme.mode === 'light' ? '#222222' : '#d7dadc'};
+    --Theme-NavLink--Color__onHover: ${(props): string =>
+      props.theme.mode === 'light' ? '#1c1c1c' : '#d7dadc'};
+    --Theme-NavLink--Background__onHover: ${(props): string =>
+      props.theme.mode === 'light'
+        ? 'rgba(26,26,27,0.1)'
+        : 'rgba(215,218,220,0.1)'};
+    --Theme-Section--Background: ${(props): string =>
+      props.theme.mode === 'light' ? '#ffffff' : '#030303'};
 
+    --Theme-Section--Background__gradient: linear-gradient(180deg, ${(
+      props
+    ): string =>
+      props.theme.mode === 'light'
+        ? '#ffffff'
+        : '#1db954'} 0%, var(--Theme-Body--Background) 100%);
   }
 
   a {
@@ -33,10 +54,15 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: -apple-system, BlinkMacSystemFont, Montserrat, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: 400;
+    background: var(--Theme-Body--Background);
     line-height: 1.5rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -53,6 +79,10 @@ const GlobalStyle = createGlobalStyle`
     &:focus {
       outline: none;
     }
+  }
+
+  h3 {
+    margin: 0;
   }
 
 }

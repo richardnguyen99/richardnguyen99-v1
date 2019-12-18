@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+
 /**
  * Create a context provider that can be swapped
  * theme via a custom React Hook `useLocalStorage`
@@ -15,21 +17,21 @@ interface ThemeProps {
 
 export const ThemeContext = React.createContext({
   theme: 'light',
-  toggle: (_: ThemeMode) => {}
+  toggle: (_: ThemeMode) => {},
 })
 
 const ThemeProvider: React.FC<ThemeProps> = ({ children }) => {
   const [theme, setTheme] = useLocalStorage<ThemeMode>('theme', 'light')
 
   const themeObj: DefaultTheme = {
-    mode: theme
+    mode: theme,
   }
 
   return (
     <ThemeContext.Provider
       value={{
         theme,
-        toggle: setTheme
+        toggle: setTheme,
       }}
     >
       <Root theme={themeObj}>{children}</Root>

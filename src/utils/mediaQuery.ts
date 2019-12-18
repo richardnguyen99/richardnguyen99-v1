@@ -7,7 +7,7 @@ import {
 
 import { breakpoints } from '../components/themes/breakpoints'
 
-export const media = Object.keys(breakpoints).reduce(
+const media = Object.keys(breakpoints).reduce(
   (
     accumulator: {
       [key: string]: (
@@ -27,10 +27,12 @@ export const media = Object.keys(breakpoints).reduce(
         @media (min-width: ${size}px) {
           ${css(styles, ...interpolations)}
         }
-      `
+      `,
     })
 
     return accumulator
   },
   {}
 )
+
+export default media

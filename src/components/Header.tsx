@@ -24,7 +24,9 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
   // Handle transparency of navbar
   const [transparent, setTransparent] = React.useState<boolean>(true)
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
     e.preventDefault()
 
     // Make sure always trigger when both states are same.
@@ -39,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
     }
   }
 
-  const handleScroll = () => {
+  const handleScroll = (): void => {
     const currentHeight =
       window.pageYOffset || document.documentElement.scrollTop
 
@@ -55,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
   React.useEffect(() => {
     window.addEventListener('scroll', handleScroll)
 
-    return () => {
+    return (): void => {
       return window.removeEventListener('scroll', handleScroll)
     }
   }, [transparent])
@@ -64,11 +66,11 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
     <header id="global">
       <Navbar transparent={transparent}>
         <Container>
-          <Brand as={Link} to="/">
-            Richard
+          <Brand as={Link} to="/" style={{ letterSpacing: '4px' }}>
+            RICHARD
           </Brand>
           <Toggler onClick={handleClick}>
-            <Octicon icon={ChevronDown}/>
+            <Octicon icon={ChevronDown} />
           </Toggler>
           <Collapse show={show} collapsed={collapsed}>
             <Nav>
@@ -87,11 +89,6 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
                   Projects
                 </NavLink>
               </NavItem>
-            </Nav>
-            <Nav style={{ marginLeft: 'auto'}}>
-              <NavLink as={Link} to="/projects">
-                sProjects
-              </NavLink>
             </Nav>
           </Collapse>
         </Container>

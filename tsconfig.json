@@ -7,7 +7,7 @@
     "jsx": "react",
     "charset": "utf8",
     "lib": ["dom", "esnext"],
-    "typeRoots": ["./node_modules/@types", "@types"],
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
     "types": ["styled-components", "react", "react-dom", "jest"],
     "noEmit": true,
     "sourceMap": true,
@@ -15,5 +15,6 @@
     "noUnusedLocals": false
   },
   "compileOnSave": false,
-  "exclude": ["node_modules", "public", ".cache"]
+  "exclude": ["node_modules", "public", ".cache"],
+  "include": ["./src"]
 }

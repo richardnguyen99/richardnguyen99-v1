@@ -8,7 +8,7 @@
 
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 
 import Header from './Header'
 import GlobalStyle from './GlobalStyle'
@@ -24,23 +24,12 @@ const Footer = styled.footer`
   span {
     font-size: 0.75rem;
   }
+  background: var(--Theme-Body--Background);
+  color: var(--Theme-Body--Text);
 `
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const data = useStaticQuery(query)
-
-  return (
-    <React.Fragment>
-      <GlobalStyle />
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <main id="main-page">{children}</main>
-      <Footer>Hi</Footer>
-    </React.Fragment>
-  )
-}
-
 const query = graphql`
-  query PageQuery{
+  query PageQuery {
     site {
       siteMetadata {
         title
@@ -48,5 +37,18 @@ const query = graphql`
     }
   }
 `
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const data = useStaticQuery(query)
+
+  return (
+    <>
+      <GlobalStyle />
+      <Header siteTitle={data.site.siteMetadata.title} />
+      <main id="main-page">{children}</main>
+      <Footer>Hi</Footer>
+    </>
+  )
+}
 
 export default Layout

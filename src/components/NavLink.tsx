@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
-export interface NavLink {
+export interface NavLinkProps {
   color?: string
   disabled?: boolean
   button?: boolean
@@ -8,25 +8,29 @@ export interface NavLink {
   [p: string]: any
 }
 
-const NavLink = styled.a<NavLink>`
+const NavLink = styled.a<NavLinkProps>`
   display: inline-block;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
 
-  color: var(--Theme-NavbarLink--Color);
+  padding: 0.5rem;
+  font-weight: 400;
+  border-radius: 4px;
+
+  color: var(--Theme-NavLink--Color);
 
   &:hover,
   &:focus {
     text-decoration: none;
+    background: var(--Theme-NavLink--Background__onHover);
   }
 
-  ${props =>
-    props.disabled &&
-    css`
-      color: var(--Theme-NavbarLink--Color__onHover);
-      pointer-events: none;
-      cursor: default;
-    `}
+  ${(props): string =>
+    props.disabled
+      ? `
+          color: var(--Theme-NavLink--Color__onHover);
+          pointer-events: none;
+          cursor: default;
+        `
+      : ``}
 `
 
 export default NavLink

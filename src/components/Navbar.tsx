@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { media } from '../utils/mediaQuery'
+import media from '../utils/mediaQuery'
 import Collapse from './Collapse'
 import Container from './Container'
 import Toggler from './Toggler'
@@ -24,16 +24,21 @@ const Navbar = styled.nav<NavbarProps>`
   justify-content: space-between;
 
   /* Add more space to navbar to look comfortable */
-  padding-top: ${props => props.transparent ? '1.5rem' : '0.5rem'};
+  padding-top: ${(props): string => (props.transparent ? '1.5rem' : '0.5rem')};
   padding-right: 0.5rem;
-  padding-bottom: ${props => props.transparent ? '1.5rem' : '0.5rem'};
+  padding-bottom: ${(props): string =>
+    props.transparent ? '1.5rem' : '0.5rem'};
   padding-left: 0.5rem;
 
-  background: ${props => props.transparent ? 'transparent' : 'var(--Theme-Navbar--Background)'};
-  color: var(--Theme-Body--Text);
+  background: ${(props): string =>
+    props.transparent ? 'transparent' : 'var(--Theme-Navbar--Background)'};
+  color: ${(props): string =>
+    props.transparent ? '#ffffff' : 'var(--Theme-Body--Text)'};
 
-  border-bottom: ${props => !props.transparent && '1px solid var(--Theme-Navbar--Border__onScroll)'};
-  box-shadow: ${props => !props.transparent && '1px 2px 18px var(--Theme-Navbar--BoxShadow__onScroll)'};
+  border-bottom: ${(props): string =>
+    !props.transparent ? 'var(--Theme-Border__onScroll)' : 'none'};
+  box-shadow: ${(props): string =>
+    !props.transparent ? 'var(--Theme-BoxShadow__onScroll)' : 'none'};
 
   transition: padding 0.4s linear;
 
