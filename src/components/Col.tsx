@@ -14,6 +14,15 @@ const Col = styled.div<ColProps>`
     flex: 0 0 ${(props): number => (props.lg / 12) * 100}%;
     max-width: ${(props): number => (props.lg / 12) * 100}%;
   }
+
+  h1 {
+    font-size: ${(props): number => 5 * (props.lg / 12)}rem;
+    font-weight: 800;
+    line-height: 5rem;
+    letter-spacing: 1px;
+    display: inline-block;
+    position: relative;
+  }
 `
 
 export default Col

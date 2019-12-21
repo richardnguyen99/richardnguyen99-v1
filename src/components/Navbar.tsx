@@ -35,8 +35,6 @@ const Navbar = styled.nav<NavbarProps>`
   color: ${(props): string =>
     props.transparent ? '#ffffff' : 'var(--Theme-Body--Text)'};
 
-  border-bottom: ${(props): string =>
-    !props.transparent ? 'var(--Theme-Border__onScroll)' : 'none'};
   box-shadow: ${(props): string =>
     !props.transparent ? 'var(--Theme-BoxShadow__onScroll)' : 'none'};
 

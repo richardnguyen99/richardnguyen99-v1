@@ -8,6 +8,7 @@ interface EmProps {
 const Em = styled.em<EmProps>`
   color: ${(props): string => props.color};
   font-style: normal;
+  display: inline-block;
 
   position: relative;
   letter-spacing: 0px;

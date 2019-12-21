@@ -3,7 +3,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
-const NotFoundPage = () => (
+const NotFoundPage: React.FC = () => (
   <Layout>
     <SEO title="Not found" />
     <h1>Richard didn&#39;t create this route</h1>

@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     --Theme-Body--Text: ${(props): string =>
       props.theme.mode === 'light' ? '#222222' : '#d7dadc'};
     --Theme-Navbar--Background: ${(props): string =>
-      props.theme.mode === 'light' ? '#ffffff' : '#030303'};
+      props.theme.mode === 'light' ? '#ffffff' : '#1a1a1b'};
     --Theme-Border__onScroll: ${(props): string =>
       props.theme.mode === 'dark' ? '1px solid #343536' : 'none'};
     --Theme-BoxShadow__onScroll: ${(props): string =>
@@ -38,12 +38,7 @@ const GlobalStyle = createGlobalStyle`
     --Theme-Section--Background: ${(props): string =>
       props.theme.mode === 'light' ? '#ffffff' : '#030303'};
 
-    --Theme-Section--Background__gradient: linear-gradient(180deg, ${(
-      props
-    ): string =>
-      props.theme.mode === 'light'
-        ? '#ffffff'
-        : '#1db954'} 0%, var(--Theme-Body--Background) 100%);
+    --Theme-Section--Background__gradient: linear-gradient(180deg, var(--Theme-Navbar--Background) 0%, var(--Theme-Body--Background) 100%);
   }
 
   a {

@@ -7,7 +7,7 @@ import SEO from '../components/SEO'
 import Container from '../components/Container'
 import Section from '../components/Section'
 
-const AboutPage = () => (
+const AboutPage: React.FC = () => (
   <Layout>
     <SEO title="About Richard" />
     <Section style={{ position: 'relative', padding: '6rem 0' }}>

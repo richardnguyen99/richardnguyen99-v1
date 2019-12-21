@@ -2,7 +2,7 @@ import React from 'react'
 
 import useLocalStorage from '../hooks/useLocalStorage'
 import Layout from '../components/Layout'
-import Image from '../components/Image'
+import Banner from '../components/Banner'
 import SEO from '../components/SEO'
 import Container from '../components/Container'
 import SectionMain from '../components/SectionMain'
@@ -13,6 +13,10 @@ import Circle from '../components/Circle'
 import Col from '../components/Col'
 import Typer from '../components/Typer'
 import Em from '../components/Em'
+
+import AbstractSquareDot from '../components/svg/AbstractSquareDot'
+import AbstractCircle from '../components/svg/AbstractCircle'
+import AbstractLine from '../components/svg/AbstractLine'
 
 const IndexPage: React.FC = () => {
   const [theme] = useLocalStorage('theme', 'light')
@@ -43,23 +47,88 @@ const IndexPage: React.FC = () => {
             size={500}
             style={{
               right: '-15%',
-              top: `${height * 0.05 + 20}%`,
+              top: `20%`,
+              zIndex: -50,
+              transform: `translate3d(0, ${height * 0.2}px, 0)`,
+            }}
+          />
+        </div>
+        <div
+          id="abstract-square-dot"
+          style={{
+            width: '20%',
+            top: '40%',
+            left: '40%',
+            position: 'absolute',
+            opacity: 0.4,
+            transform: `translate3d(0, ${height * 0.2}px, 0)`,
+          }}
+        >
+          <AbstractSquareDot mode={theme} />
+        </div>
+        <div
+          id="abstract-circle"
+          style={{
+            width: '350px',
+            height: '350px',
+            position: 'absolute',
+            top: '455px',
+            right: '-100px',
+            bottom: '50%',
+            opacity: 0.45,
+            transform: 'rotate(-45deg)',
+          }}
+        >
+          <AbstractCircle />
+        </div>
+        <div>
+          <Circle
+            size={300}
+            style={{
+              opacity: 1,
+              background: '#1db954',
+              right: '-80px',
+              top: `425px`,
               zIndex: -50,
             }}
           />
+        </div>
+        <div
+          id="abstract-circle"
+          style={{
+            width: '350px',
+            height: '350px',
+            position: 'absolute',
+            top: '-35%',
+            right: '55%',
+            bottom: '50%',
+            left: '80%',
+            opacity: 0.45,
+            transform: 'rotate(-45deg)',
+          }}
+        >
+          <AbstractCircle />
+        </div>
+        <div
+          id="abstract-circle"
+          style={{
+            width: '100%',
+            position: 'absolute',
+            top: '20%',
+            right: '55%',
+            bottom: '50%',
+            left: '-100%',
+            opacity: 0.2,
+            transform: 'rotate(-45deg)',
+          }}
+        >
+          <AbstractCircle />
         </div>
         <Container>
           <Row>
             <Col lg={12}>
               <div>
-                <h1
-                  style={{
-                    fontSize: '4em',
-                    fontWeight: 800,
-                    letterSpacing: '4px',
-                    display: 'inline-block',
-                  }}
-                >
+                <h1>
                   <Cross
                     style={{
                       transform: 'scale(0.5) rotate(-45deg)',
@@ -94,7 +163,7 @@ const IndexPage: React.FC = () => {
             </Col>
             <Col lg={6}>
               <div style={{ maxWidth: `350px`, marginBottom: `1.45rem` }}>
-                <Image />
+                <Banner mode={theme === 'light' ? '#dae0e6' : '#1a1a1b'} />
               </div>
             </Col>
           </Row>

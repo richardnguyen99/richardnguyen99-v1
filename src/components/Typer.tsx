@@ -10,6 +10,12 @@ const StyledTyper = styled.h3`
   font-size: 2rem;
   height: 100%;
   margin: 0;
+  display: inline-block;
+  position: relative;
+
+  @media screen and (max-width: 576px) {
+    font-size: 1rem;
+  }
 `
 
 const Typer: React.FC<TyperProps> = ({ dataText, title = '' }) => {
