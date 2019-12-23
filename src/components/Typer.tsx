@@ -7,7 +7,8 @@ interface TyperProps {
 }
 
 const StyledTyper = styled.h3`
-  font-size: 2rem;
+  font-size: 1.5rem;
+  font-weight: 400;
   height: 100%;
   margin: 0;
   display: inline-block;

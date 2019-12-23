@@ -8,15 +8,12 @@ import Container from '../components/Container'
 import SectionMain from '../components/SectionMain'
 import SectionHero from '../components/SectionHero'
 import Row from '../components/Row'
-import Cross from '../components/Cross'
-import Circle from '../components/Circle'
 import Col from '../components/Col'
 import Typer from '../components/Typer'
 import Em from '../components/Em'
 
-import AbstractSquareDot from '../components/svg/AbstractSquareDot'
-import AbstractCircle from '../components/svg/AbstractCircle'
-import AbstractLine from '../components/svg/AbstractLine'
+import StyledImgHeroLight from '../components/graphql/StyledImgHeroLight'
+import StyledImgHeroDark from '../components/graphql/StyledImgHeroDark'
 
 const IndexPage: React.FC = () => {
   const [theme] = useLocalStorage('theme', 'light')
@@ -42,99 +39,32 @@ const IndexPage: React.FC = () => {
           transform: `translate3d(0, ${height * 0.5}px, 0`,
         }}
       >
-        <div>
-          <Circle
-            size={500}
-            style={{
-              right: '-15%',
-              top: `20%`,
-              zIndex: -50,
-              transform: `translate3d(0, ${height * 0.2}px, 0)`,
-            }}
-          />
-        </div>
-        <div
-          id="abstract-square-dot"
-          style={{
-            width: '20%',
-            top: '40%',
-            left: '40%',
-            position: 'absolute',
-            opacity: 0.4,
-            transform: `translate3d(0, ${height * 0.2}px, 0)`,
-          }}
-        >
-          <AbstractSquareDot mode={theme} />
-        </div>
-        <div
-          id="abstract-circle"
-          style={{
-            width: '350px',
-            height: '350px',
-            position: 'absolute',
-            top: '455px',
-            right: '-100px',
-            bottom: '50%',
-            opacity: 0.45,
-            transform: 'rotate(-45deg)',
-          }}
-        >
-          <AbstractCircle />
-        </div>
-        <div>
-          <Circle
-            size={300}
-            style={{
-              opacity: 1,
-              background: '#1db954',
-              right: '-80px',
-              top: `425px`,
-              zIndex: -50,
-            }}
-          />
-        </div>
-        <div
-          id="abstract-circle"
-          style={{
-            width: '350px',
-            height: '350px',
-            position: 'absolute',
-            top: '-35%',
-            right: '55%',
-            bottom: '50%',
-            left: '80%',
-            opacity: 0.45,
-            transform: 'rotate(-45deg)',
-          }}
-        >
-          <AbstractCircle />
-        </div>
-        <div
+        {theme === 'dark' ? <StyledImgHeroDark /> : <StyledImgHeroLight />}
+
+        {/*
+          <div
           id="abstract-circle"
           style={{
             width: '100%',
             position: 'absolute',
             top: '20%',
-            right: '55%',
             bottom: '50%',
-            left: '-100%',
             opacity: 0.2,
             transform: 'rotate(-45deg)',
           }}
         >
           <AbstractCircle />
         </div>
+        */}
         <Container>
           <Row>
             <Col lg={12}>
               <div>
-                <h1>
-                  <Cross
-                    style={{
-                      transform: 'scale(0.5) rotate(-45deg)',
-                      top: `${height * 0.075 + 15}%`,
-                    }}
-                  />
+                <h1
+                  style={{
+                    fontWeight: 900,
+                  }}
+                >
                   Hi, I&apos;m&nbsp;
                   <Em
                     color={theme === 'light' ? '#4100f5' : '#ffcdd2'}

@@ -6,6 +6,8 @@ import { createGlobalStyle } from 'styled-components'
  * browsers while applying new styles.
  */
 const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i&display=swap');
+
   *,*::before,*::after {
     outline: none;
     box-sizing: border-box;
@@ -55,8 +57,8 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Montserrat, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-weight: 400;
+    font-family: Montserrat, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 200;
     background: var(--Theme-Body--Background);
     line-height: 1.5rem;
     -webkit-font-smoothing: antialiased;

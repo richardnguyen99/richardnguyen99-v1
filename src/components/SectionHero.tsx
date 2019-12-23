@@ -1,6 +1,15 @@
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 
 import Section from './Section'
+
+// Never import this to Index page
+export const StyledImg = styled(Img)`
+  top: 0;
+  right: auto;
+  bottom: 0;
+  left: 0;
+`
 
 const SectionHero = styled(Section)`
   position: relative;
@@ -9,7 +18,6 @@ const SectionHero = styled(Section)`
   margin: 0;
   display: flex;
   align-items: center;
-  background: var(--Theme-Section--Background__gradient);
 `
 
 export default SectionHero

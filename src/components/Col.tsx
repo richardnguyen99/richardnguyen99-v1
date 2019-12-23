@@ -16,7 +16,7 @@ const Col = styled.div<ColProps>`
   }
 
   h1 {
-    font-size: ${(props): number => 5 * (props.lg / 12)}rem;
+    font-size: ${(props): number => 3 * (props.lg / 12)}rem;
     font-weight: 800;
     line-height: 5rem;
     letter-spacing: 1px;
