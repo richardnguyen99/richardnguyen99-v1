@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 
+import { ThemeContext } from '../context/ThemeContext'
 import useLocalStorage from '../hooks/useLocalStorage'
 import useMediaQuery from '../hooks/useMediaQuery'
 import Avatar from '../components/graphql/Avatar'
@@ -21,6 +22,7 @@ import Slider from '../components/Slider'
  * The source code of index page '/'
  */
 const IndexPage: React.FC = () => {
+  const mode = React.useContext(ThemeContext)
   const [theme] = useLocalStorage('theme', 'light')
   const [isWide] = useMediaQuery({ minWidth: '1200px' })
   // Create a state that takes window height position

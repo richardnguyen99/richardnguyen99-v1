@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
+import { ThemeContext } from '../context/ThemeContext'
 import {
   PythonLogo,
   FlaskLogo,
@@ -31,7 +32,7 @@ interface LogoProps {
   mode: string
 }
 
-interface SliderProps extends LogoProps {
+interface SliderProps {
   stackList: Stack[]
 }
 
@@ -184,44 +185,40 @@ const LogoWrapper = styled.section`
   display: flex;
 `
 
-const LogoContainer = styled.span<LogoProps>`
+const LogoContainer = styled.span`
   position: relative;
   height: 2rem;
   margin: 0.5rem 1rem;
   bottom: 0;
   opacity: 0.8;
   transition: opacity 120ms ease-in-out;
-  ${(props): string | null =>
-    props.mode === 'dark' ? `filter: brightness(1) invert(0.1);` : null}
+  filter: var(--Theme-Logo__filter);
 
   &:hover {
     opacity: 1;
   }
 `
 
-const SortedLogo: React.FC<SliderProps> = ({ stackList, mode }) => (
+const SortedLogo: React.FC<SliderProps> = ({ stackList }) => (
   <LogoWrapper>
-    {stackList.map(
-      ({ key, logo: Logo }) =>
-        Logo && (
-          <LogoContainer key={key} mode={mode}>
-            <Logo />
-          </LogoContainer>
-        )
-    )}
+    {stackList.map(({ logo: Logo }) => (
+      <LogoContainer>
+        <Logo />
+      </LogoContainer>
+    ))}
   </LogoWrapper>
 )
 
-const LogoSlider: React.FC<LogoProps> = ({ mode }) => (
+const LogoSlider: React.FC<LogoProps> = () => (
   <LogoSliderContainer>
     <LogoSlider1>
-      <SortedLogo mode={mode} stackList={stacks} />
+      <SortedLogo stackList={stacks} />
     </LogoSlider1>
     <LogoSlider2>
-      <SortedLogo mode={mode} stackList={stacks} />
+      <SortedLogo stackList={stacks} />
     </LogoSlider2>
     <LogoSlider3>
-      <SortedLogo mode={mode} stackList={stacks} />
+      <SortedLogo stackList={stacks} />
     </LogoSlider3>
   </LogoSliderContainer>
 )

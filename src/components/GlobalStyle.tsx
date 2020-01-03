@@ -68,7 +68,8 @@ const GlobalStyle = createGlobalStyle`
       props.theme.mode === 'light' ? '#dae0e6' : '#1a1a1b'};
     --Theme-Card--Border: ${(props): string =>
       props.theme.mode === 'dark' ? '1px solid #343536' : '1px solid #ccc'};
-
+    --Theme-Logo__filter: ${(props): string =>
+      props.theme.mode === 'dark' ? 'brightness(1) invert(0.1)' : ''};
   }
 
   a {
@@ -222,6 +223,7 @@ const GlobalStyle = createGlobalStyle`
   samp {
     font-family: Monaco, Menlo, Consolas, monospace;
   }
+
 
   code {
     font-size: 0.875rem;
