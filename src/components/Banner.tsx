@@ -4,6 +4,12 @@ interface BannerProps {
   mode: string
 }
 
+/** Banner image
+ * This is a generated SVG React component to illustrate banner.
+ * It only take 1 prop to modify the background color. This is
+ * a way to use SVG components without plugin installations.
+ *
+ ============================================================= */
 const Banner: React.FC<BannerProps> = ({ mode }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 703.82 713.72">
     <title>banner</title>

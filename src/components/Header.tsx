@@ -63,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
   }, [transparent])
 
   return (
-    <header id="global">
+    <header id="header-global">
       <Navbar transparent={transparent}>
         <Container>
           <Brand as={Link} to="/" style={{ letterSpacing: '4px' }}>

@@ -11,7 +11,10 @@ export interface NavLinkProps {
 const NavLink = styled.a<NavLinkProps>`
   display: inline-block;
 
-  padding: 0.5rem;
+  padding-top: 0.5rem;
+  padding-right: 0rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
   font-weight: 400;
   border-radius: 4px;
 

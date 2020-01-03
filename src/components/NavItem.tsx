@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 const NavItem = styled.li`
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
+  padding-right: 0rem;
+  padding-left: 1.5rem;
 `
 
 export default NavItem

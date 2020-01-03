@@ -30,7 +30,24 @@ const SEO: React.FC<SEOProps> = ({
   article = false,
 }) => {
   // React hook to query site. You can use <StaticQuery /> component to do the same.
-  const { site } = useStaticQuery(query)
+  const { site } = useStaticQuery(graphql`
+    query SEO {
+      site {
+        buildTime(formatString: "MM-DD-YYYY")
+        siteMetadata {
+          defaultTitle: title
+          defaultDescription: description
+          defaultBanner: banner
+          headline
+          language
+          author
+          twitter
+          github
+          linkedin
+        }
+      }
+    }
+  `)
 
   // Destructoring `site` object for clear data
   const {
@@ -181,24 +198,5 @@ const SEO: React.FC<SEOProps> = ({
     </>
   )
 }
-
-const query = graphql`
-  query SEO {
-    site {
-      buildTime(formatString: "MM-DD-YYYY")
-      siteMetadata {
-        defaultTitle: title
-        defaultDescription: description
-        defaultBanner: banner
-        headline
-        language
-        author
-        twitter
-        github
-        linkedin
-      }
-    }
-  }
-`
 
 export default SEO

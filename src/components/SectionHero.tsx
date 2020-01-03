@@ -18,6 +18,8 @@ const SectionHero = styled(Section)`
   margin: 0;
   display: flex;
   align-items: center;
+  text-align: center;
+  /* background: var(--Theme-Section--Background__gradient); */
 `
 
 export default SectionHero

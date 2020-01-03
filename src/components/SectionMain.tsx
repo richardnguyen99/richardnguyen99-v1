@@ -3,20 +3,16 @@ import styled from 'styled-components'
 import Section from './Section'
 
 const SectionMain = styled(Section)`
+  max-width: 720px;
   position: relative;
+  padding-top: 1rem;
   margin-top: -2.5rem;
-  margin-right: 2rem;
+  margin-right: auto;
   margin-bottom: 0rem;
-  margin-left: 2rem;
+  margin-left: auto;
   background: var(--Theme-Section--Background);
-  border-radius: 4px;
 
-  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.405);
-
-  @media screen and (max-width: 992px) {
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
+  border-top: var(--Theme-Section--Border);
 `
 
 export default SectionMain

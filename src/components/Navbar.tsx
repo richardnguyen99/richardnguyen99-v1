@@ -25,16 +25,16 @@ const Navbar = styled.nav<NavbarProps>`
 
   /* Add more space to navbar to look comfortable */
   padding-top: ${(props): string => (props.transparent ? '1.5rem' : '0.5rem')};
-  padding-right: 0.5rem;
   padding-bottom: ${(props): string =>
     props.transparent ? '1.5rem' : '0.5rem'};
-  padding-left: 0.5rem;
 
   background: ${(props): string =>
     props.transparent ? 'transparent' : 'var(--Theme-Navbar--Background)'};
   color: ${(props): string =>
     props.transparent ? '#ffffff' : 'var(--Theme-Body--Text)'};
 
+  border-bottom: ${(props): string =>
+    !props.transparent ? 'var(--Theme-Border__onScroll)' : 'none'};
   box-shadow: ${(props): string =>
     !props.transparent ? 'var(--Theme-BoxShadow__onScroll)' : 'none'};
 

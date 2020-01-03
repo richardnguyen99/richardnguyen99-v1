@@ -8,6 +8,7 @@ const Col = styled.div<ColProps>`
   position: relative;
   width: 100%;
   padding-right: 1rem;
+  padding-bottom: 2rem;
   padding-left: 1rem;
 
   @media screen and (min-width: 992px) {
@@ -16,9 +17,8 @@ const Col = styled.div<ColProps>`
   }
 
   h1 {
-    font-size: ${(props): number => 3 * (props.lg / 12)}rem;
     font-weight: 800;
-    line-height: 5rem;
+    line-height: 3rem;
     letter-spacing: 1px;
     display: inline-block;
     position: relative;
