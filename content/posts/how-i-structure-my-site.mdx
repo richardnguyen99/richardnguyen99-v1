@@ -1,0 +1,64 @@
+---
+title: 'How I structured my personal site'
+date: '2019-01-04'
+categories:
+  - Blogs
+  - Web
+tags:
+  - Typescript
+  - Gatsby
+  - Styled-components
+thumbnail: ../thumbnails/Gatsby.png
+---
+
+### Why Gatsby?
+
+- Want a modern, fun to work with, static site generator that doesn't have `old-school` features like [Jekyll](https://jekyllrb.com)? :heavy_check_mark:
+
+- Have experience working with React, GraphQL and its ecosystem? :heavy_check_mark:
+
+- Look for a tool that can handle the performance by itself and leave you with other fun parts? :heavy_check_mark:
+
+### What about Typescript?
+
+- Don't understand the meanings of React components written in Javascript? :heavy_check_mark:
+
+- Want to track and catch bugs immediately? :heavy_check_mark:
+
+- Want to add static type checking to Javascript? :heavy_check_mark:
+
+- Heard lots of people talking about it and want to join? :heavy_check_mark:
+
+### Enough checkmarks, what do the rest do?
+
+- **[ESLint](https://eslint.org)**: A linter tool that forces you to write qualified code.
+
+- **[Stylelint](https://stylelint.io)**: A linter tool like ESlint but for CSS and styled-components.
+
+- **[Prettier](https://prettier.io)**: A formatter tool that provides a standard structure for your code.
+
+- **[Husky](https://github.com/typicode/husky)**: Allows us to execute pre-commit commands.
+
+- **[Lint-staged](https://github.com/okonet/lint-staged)**: Runs all linters on staged git files.
+
+### Real works began...
+
+I recommend you to fork [gatsby-starter-default](https://github.com/gatsbyjs/gatsby-starter-default)
+or [gatsby-starter-hello-world](https://github.com/gatsbyjs/gatsby-starter-hello-world). The reason is that these
+two starter boilerplates will give the basic and essential parts for developing a Gatsby project. The different between
+these two is that [gatsby-starter-hello-world](https://github.com/gatsby-starter-hello-world) only contains a set of core
+features, which means you're gonna build your site from scratch.
+
+In this blog, I will use [gatsby-starter-default](https://github.com/gatsbyjs/gatsby-starter-default).
+
+##### Create a new Gatsby project
+
+  ```bash
+      gatsby new <your_repo_name> https://github.com/gatsbyjs/gatsby-starter-default
+  ```
+
+> To know more, see at [Gatsby's Quick-start](https://gatsbyjs.org/docs/quick-start/)
+
+##### Adding Typescript to Gatsby project
+
+

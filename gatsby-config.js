@@ -1,8 +1,10 @@
+const emoji = require(`remark-emoji`)
+
 module.exports = {
   // General information for SEO
   siteMetadata: {
-    title: 'Richard\'s personal blog',
-    titleAlt: 'Richard\'s blog',
+    title: "Richard's personal blog",
+    titleAlt: "Richard's blog",
     description: 'A place where Richard tells his story',
     banner: '',
     headline: '',
@@ -10,16 +12,16 @@ module.exports = {
     author: 'Richard Nguyen',
     twitter: '@Richard86159584',
     github: 'https://github.com/yuuta1999',
-    linkedin: 'https://www.linkedin.com/in/richard-nguyen-8a6168192/'
+    linkedin: 'https://www.linkedin.com/in/richard-nguyen-8a6168192/',
   },
   plugins: [
     `gatsby-plugin-typescript`,
     {
-      resolve:'gatsby-plugin-styled-components',
+      resolve: 'gatsby-plugin-styled-components',
       options: {
         displayName: true,
-        ssr: true
-      }
+        ssr: true,
+      },
     },
     `gatsby-plugin-react-helmet`,
     {
@@ -29,6 +31,27 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `thumbnail`,
+        path: `${__dirname}/content/thumbnails`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        remarkPlugins: [emoji],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: 'posts',
+        path: `${__dirname}/content/posts/`,
+      },
+    },
+    `gatsby-transformer-remark`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

@@ -1,9 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 
-import { ThemeContext } from '../context/ThemeContext'
 import useLocalStorage from '../hooks/useLocalStorage'
-import useMediaQuery from '../hooks/useMediaQuery'
 import Avatar from '../components/graphql/Avatar'
 import Card from '../components/Card'
 import Layout from '../components/Layout'
@@ -22,9 +20,7 @@ import Slider from '../components/Slider'
  * The source code of index page '/'
  */
 const IndexPage: React.FC = () => {
-  const mode = React.useContext(ThemeContext)
   const [theme] = useLocalStorage('theme', 'light')
-  const [isWide] = useMediaQuery({ minWidth: '1200px' })
   // Create a state that takes window height position
   // to modify height of some elements in order to create
   // parallax scrolling
@@ -147,6 +143,23 @@ const IndexPage: React.FC = () => {
                 <p>All techniques I feel comfortable the most with</p>
               </div>
               <Slider mode={theme} />
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={12}>
+              <div>
+                <h1>
+                  <Em
+                    spacing={4}
+                    top={0.55}
+                    bottom={0.1}
+                    color={theme === 'light' ? '#4100f5' : '#ffcdd2'}
+                    background={theme === 'light' ? '#ffcdd2' : '#4100f5'}
+                  >
+                    Blogs
+                  </Em>
+                </h1>
+              </div>
             </Col>
           </Row>
         </Container>
