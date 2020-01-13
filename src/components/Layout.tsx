@@ -6,12 +6,11 @@
  *  add in page components.
  */
 
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-
-import Header from './Header'
 import GlobalStyle from './GlobalStyle'
+import Header from './Header'
 
 // Define interface for Layout components to type-check params
 interface LayoutProps {
@@ -46,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <GlobalStyle />
       <Header siteTitle={data.site.siteMetadata.title} />
       <main id="main-page">{children}</main>
-      <Footer>Hi</Footer>
+      <Footer>Richard Nguyen </Footer>
     </>
   )
 }

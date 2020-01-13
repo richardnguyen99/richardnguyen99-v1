@@ -42,6 +42,24 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         remarkPlugins: [emoji],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: `language-`,
+              inlineCoderMarker: null,
+              aliases: {},
+              showLineNumbers: false,
+              noInlineHighlight: false,
+              prompt: {
+                user: 'root',
+                host: 'localhost',
+                global: false,
+              },
+              escapeEntities: {},
+            },
+          },
+        ],
       },
     },
     {
@@ -51,7 +69,12 @@ module.exports = {
         path: `${__dirname}/content/posts/`,
       },
     },
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [],
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

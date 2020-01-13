@@ -22,10 +22,6 @@ module.exports = {
      * "import/named" temporary disable.
      */
     'import/named': 'off',
-    /**
-     * @bug?
-     * "import/export" temporary disable.
-     */
     'import/export': 'error',
     'import/prefer-default-export': 'error', // Allow single Named-export
     'no-unused-expressions': [

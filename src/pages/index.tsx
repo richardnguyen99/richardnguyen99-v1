@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
+import { graphql } from 'gatsby'
 
+import { IndexQueryQuery } from '../graphql-types'
 import useLocalStorage from '../hooks/useLocalStorage'
 import Avatar from '../components/graphql/Avatar'
 import Card from '../components/Card'
@@ -15,11 +17,20 @@ import Typer from '../components/Typer'
 import Em from '../components/Em'
 import Parallax from '../components/Parallax'
 import Slider from '../components/Slider'
+import PostList from '../components/PostList'
+
+interface IndexPageProps {
+  data: IndexQueryQuery
+}
 
 /** Index / Landing page
  * The source code of index page '/'
  */
-const IndexPage: React.FC = () => {
+const IndexPage: React.FC<IndexPageProps> = ({
+  data: {
+    latest: { edges },
+  },
+}) => {
   const [theme] = useLocalStorage('theme', 'light')
   // Create a state that takes window height position
   // to modify height of some elements in order to create
@@ -38,7 +49,7 @@ const IndexPage: React.FC = () => {
     return (): void => {
       window.removeEventListener('scroll', handleHeight)
     }
-  })
+  }, [height])
 
   return (
     <Layout>
@@ -160,6 +171,7 @@ const IndexPage: React.FC = () => {
                   </Em>
                 </h1>
               </div>
+              <PostList postEdges={edges} />
             </Col>
           </Row>
         </Container>
@@ -167,5 +179,35 @@ const IndexPage: React.FC = () => {
     </Layout>
   )
 }
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    latest: allMdx(
+      limit: 5
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            tags
+            categories
+            thumbnail {
+              childImageSharp {
+                fixed(width: 30, height: 30) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
+            date
+          }
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage

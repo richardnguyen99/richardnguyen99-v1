@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+export type Tag = 'javascript' | 'typescript' | 'react' | 'gatsby'
+export type Tags = Tag[]
+
 export type ThemeMode = 'light' | 'dark'
 
 export interface Frontmatter {
   date: string
   title: string
   categories: string[]
-  tags: string[]
+  tags: Tags
   thumbnail: any
 }
 

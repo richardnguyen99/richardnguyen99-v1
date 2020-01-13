@@ -2,4 +2,8 @@
 .node_modules/
 .public/
 
-**/*.js
+# Ignore this file because it's automatically generated
+src/graphql-types.ts
+
+**/gatsby-*.js
+**/.eslintrc.js

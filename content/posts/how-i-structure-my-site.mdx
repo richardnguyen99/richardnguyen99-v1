@@ -5,11 +5,13 @@ categories:
   - Blogs
   - Web
 tags:
-  - Typescript
-  - Gatsby
-  - Styled-components
+  - typescript
+  - gatsby
+  - react
 thumbnail: ../thumbnails/Gatsby.png
 ---
+
+import CodeHeader from '../../src/components/CodeHeader'
 
 ### Why Gatsby?
 
@@ -53,12 +55,413 @@ In this blog, I will use [gatsby-starter-default](https://github.com/gatsbyjs/ga
 
 ##### Create a new Gatsby project
 
-  ```bash
-      gatsby new <your_repo_name> https://github.com/gatsbyjs/gatsby-starter-default
-  ```
+<CodeHeader>bash</CodeHeader>
+
+```bash
+gatsby new <your_repo_name> https://github.com/gatsbyjs/gatsby-starter-default
+```
 
 > To know more, see at [Gatsby's Quick-start](https://gatsbyjs.org/docs/quick-start/)
 
-##### Adding Typescript to Gatsby project
+##### Add Typescript to Gatsby project
 
+1. Install Typescript and `gatsby-plugin-typescript`:
 
+I only use Typescript in development. When the application hits production mode, it will be transpiled into normal Javascript.
+That's why I installed it as a devDependency. While most of Gatsby's plugins are recommended to be installed in the normal dependencies list.
+
+<CodeHeader>bash</CodeHeader>
+
+```bash
+yarn add gatsby-plugin-typescript
+yarn add typescript --dev
+```
+
+2. Enable the plugin in `gatsby-config.js`:
+
+<CodeHeader>gatsby-config.js</CodeHeader>
+
+```js
+module.exports = {
+  ...,
+  plugins: [
+    // Other plugins
+    `gatsby-plugin-typescript`,
+  ],
+}
+```
+
+> Note: To see more configuration about this plugin, see [the official site](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/)
+
+3. Configure `tsconfig.json`:
+
+<CodeHeader>tsconfig.json</CodeHeader>
+
+```json
+{
+  "compilerOptions": {
+    "modules": "commonjs", // 1
+    "target": "esnext", // 2
+    "noImplicitAny": true, // 3,
+    "jsx": "react", // 4
+    "charset": "utf8",
+    "lib": ["dom", "esnext"], // 5
+    "noEmit": true, // 6
+    "esModuleInterop": true, // 7
+    "types": ["react", "react-dom"], // 8
+    "typeRoots": ["./node_modules/@types"] // 9
+  },
+  "compileOnSave": false,
+  "exclude": ["node_modules", "public", ".cache"], // 10
+  "include": ["./src"] // 11
+}
+```
+
+1. **`"modules": "commonjs"`**: Because I use `npm` and `nodejs` for building the site.
+   That's why I need to set this to `commonjs`. To know more about the differences between these options:
+   [Here](https://medium.com/computed-comparisons/commonjs-vs-amd-vs-requirejs-vs-es6-modules-2e814b114a0b).
+
+2. **`"target": "esnext"`**: Tell Typescript which target of Javascript version that `.ts` files should be compiled to.
+   In this case, `"esnext"` is the latest version.
+
+3. **`"noImplicitAny": true`**: Prevent Typescript from compiling expressions and declarations implied `any` type.
+
+4. **`"jsx": "react"`**: Support `.jsx` components written in Typescript. `"react"` option will tell Typescript to normal
+   React components written in plain Javascript (no JSX).
+
+5. **`"lib": ["dom", "esnext"]`**: Specify a list of built-in librabries, APIs to be included in the site. Because this project is
+   a site and is written in ES2015+, `"dom"` and `"esnext"` are my choices.
+
+6. **`"noEmit": true`**: Basically, there will be no compiled output files.
+
+7. **`"esModuleInterop": true`**: Make sure Typescript compatible with Babel behind the scenes.
+
+8. **`"types": ["react", "react-dom"], "typeRoots": ["./node_modules/@types"]`**: List of names and folders of type definitions.
+
+9. **`"exclude": ["node_modules", "public", ".cache"],`**: Specify which folders which be excluded or included when Typescript compiles.
+
+> To know more about these settings, see at [Typescript compiler options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
+
+4. Add type-checking NPM scripts:
+
+<CodeHeader>package.json</CodeHeader>
+
+```json
+{
+  ...,
+  "script": {
+    "type-check": "tsc"
+  }
+}
+```
+
+We don't need to add more any configuration flags because Typescript will look up in the `tsconfig.json` file.
+
+5. Change existing `.js` files to `.tsx`:
+
+At this point, we're all set. It's time to change `.js` files to `.tsx`, for example:
+
+<CodeHeader>src/components/Header.tsx</CodeHeader>
+
+```tsx
+import { Link } from 'gatsby'
+import React from 'react'
+
+interface HeaderProps {
+  siteTitle?: string
+}
+
+const Header: React.FC<HeaderProps> = ({ siteTitle = '' }) => (
+  <header
+    style={{
+      background: `rebeccapurple`,
+      marginBottom: `1.45rem`,
+    }}
+  >
+    <div
+      style={{
+        margin: `0 auto`,
+        maxWidth: 960,
+        padding: `1.45rem 1.0875rem`,
+      }}
+    >
+      <h1 style={{ margin: 0 }}>
+        <Link
+          to="/"
+          style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
+        >
+          {siteTitle}
+        </Link>
+      </h1>
+    </div>
+  </header>
+)
+
+export default Header
+```
+
+<CodeHeader>src/components/Image.tsx</CodeHeader>
+
+```tsx
+import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import Img from 'gatsby-image'
+
+const Image: React.FC = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
+
+  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+}
+
+export default Image
+```
+
+> Tip: Every components that take props will have the `prop-types` definitions at the end of the files.
+> You can follow these definitions and rewrite them in the Typescript way, and remember to delete `import PropTypes from 'prop-types'`
+
+At this time, if you don't care other things, you can stop reading this articles and create your own components written in Typescript.
+They won't affect any to your project. But they will help you become more proficient and your codebase not look like :poop:.
+
+### Set up the linters
+
+> Note: Why didn't I use **TSLint** instead of **ESLint**? FYI, **TSLint** maintaining team announced that **TSLint** would be deprecated
+> and no longer get any supports afterwards. To know more about that announcement, see this article: [TSLint-in-2019](https://medium.com/palantir/tslint-in-2019-1a144c2317a9).
+
+1. Install (many) dependencies:
+
+<CodeHeader>bash</CodeHeader>
+
+```bash
+yarn add --dev eslint \
+          stylelint \
+          stylelint-config-recommended \
+          @typescript-eslint/eslint-plugin \
+          @typescript-eslint/parser \
+          eslint-config-prettier \
+          eslint-config-airbnb-typescript \
+          eslint-plugin-import \
+          eslint-plugin-jsx-a11y \
+          eslint-plugin-react-hooks \
+          eslint-plugin-prettier \
+          eslint-plugin-react \
+          /
+```
+
+> Note: These dependencies `eslint-config-airbnb-typescript eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react-hooks`
+> are just my choices. You can check them if you want to know what they are. And if you don't like to add them to the project,
+> feel free to remove.
+
+2. Config `.eslint.js`:
+
+To make **ESLint** work, you need to add `.eslintrc.js` in the root directory of the project.
+
+<CodeHeader>.eslintrc.js</CodeHeader>
+
+```js
+module.exports = {
+  // This parser converts Typescript to compatible ESLint Javascript.
+  parser: '@typescript-eslint/parser',
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
+  },
+  plugins: ['@typescript-eslint', 'react-hooks', 'prettier'],
+  extends: [
+    'airbnb',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/typescript',
+    'plugin:prettier/recommended',
+    'prettier/@typescript-eslint',
+  ],
+  rules: {
+    /**
+     * @description rules of eslint official
+     */
+    /**
+     * @bug https://github.com/benmosher/eslint-plugin-import/issues/1282
+     * "import/named" temporary disable.
+     */
+    'import/named': 'off',
+    'import/export': 'error',
+    'import/prefer-default-export': 'error', // Allow single Named-export
+    'no-unused-expressions': [
+      'error',
+      {
+        allowShortCircuit: true,
+        allowTernary: true,
+      },
+    ], // https://eslint.org/docs/rules/no-unused-expressions
+
+    /**
+     * @description rules of @typescript-eslint
+     */
+    '@typescript-eslint/explicit-function-return-type': [
+      'error',
+      {
+        allowTypedFunctionExpressions: true,
+      },
+    ],
+    /**
+     * @description rules of eslint-plugin-react
+     */
+    'react/jsx-filename-extension': [
+      'error',
+      {
+        extensions: ['.jsx', '.tsx'],
+      },
+    ], // also want to use with ".tsx"
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'react/prop-types': 'off', // Is this incompatible with TS props type?
+
+    /**
+     * @description rules of eslint-plugin-react-hooks
+     */
+    'react-hooks/rules-of-hooks': 'error',
+
+    /**
+     * @description rules of eslint-plugin-prettier
+     */
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        semi: false,
+      },
+    ],
+  },
+  overrides: [
+    {
+      files: ['**/*.js'],
+      rules: {
+        strict: 'off',
+      },
+    },
+  ],
+}
+```
+
+> Note: You can create **ESLint** config file in other extensions, e.g: `.eslintrc` or `.eslintrc.json`. But the reason to use `.js` at the end of the file
+> is that you can add comments.
+
+3. Add to NPM scripts:
+
+<CodeHeader>package.json</CodeHeader>
+
+```json
+{
+  ...,
+  "scripts": {
+    ...,
+    "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
+    "lint:fix": "yarn lint --fix",
+  }
+}
+```
+
+4. Add `.eslintignore`:
+
+It's good to use **ESLint** for the entire project, but sometimes we can't change files (`node_modules/`, `gatsby-*.js`) in the way **ESLint** wants. Because of that, we
+must tell **ESLint** to ignore those files.
+
+<CodeHeader>.eslintignore</CodeHeader>
+
+```.eslintignore
+.cache/
+.node_modules/
+.public/
+
+**/gatsby-*.js
+**/.eslintrc.js
+```
+
+5. Config `.stylelintrc`:
+
+Because we're creating a web application, we'll have to use a lot of CSS code. A :poop: CSS codebase is much worse than one in Javascript.
+
+<CodeHeader>.stylelintrc.json</CodeHeader>
+
+```.stylelintrc.json
+{
+  "extends": [
+    "stylelint-config-recommended",
+  ]
+}
+```
+
+6. Add to NPM scripts:
+
+<CodeHeader>package.json</CodeHeader>
+
+```json
+{
+  ...,
+  "scripts": {
+    ...,
+    "lint:css": "stylelint \"./src/**/*.{scss,sass,css,html}\"",
+  }
+}
+```
+
+I'm satishfied with `stylelint-config-recommended`, so I won't do any extra configuration. If you want to know more, see [stylelint.io](https://stylelint.io)
+
+### Set up pre-commit
+
+Having the project linters is good, but who will guarantee that you will use them all the time? That's why `lint-staged` and `husky` come to the play.
+
+1. Install the dependencies:
+
+<CodeHeader>bash</CodeHeader>
+
+```bash
+yarn add --dev husky lint-staged
+```
+
+2. Config `.huskyrc` and `.lintstagedrc`:
+
+<CodeHeader>.huskyrc</CodeHeader>
+
+```json
+{
+  "hooks": {
+    "pre-commit": ["yarn type-check && lint-staged"]
+  }
+}
+```
+
+<CodeHeader>.lintstagedrc.json</CodeHeader>
+
+```json
+{
+  "*.{js,jsx,ts,tsx}": ["yarn lint:css && yarn lint:fix", "git add"],
+  "*.{scss,sass,css}": ["prettier --write", "stylelint --fix", "git add"],
+  "{*.{json,md}}": ["prettier --write", "git add"]
+}
+```
+
+### That's it, we're done.
+
+Working with all these linters and pre-commits can be intimidating at first, but they will help you understand what you're trying to build
+and prevent your codebase from becoming unmaintainable.
