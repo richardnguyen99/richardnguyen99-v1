@@ -7,7 +7,6 @@ import { IndexQueryQuery } from '../graphql-types'
 
 const PostContainer = styled.div`
   margin-top: 2rem;
-  margin-bottom: 2rem;
 `
 
 const PostLink = styled(Link)`

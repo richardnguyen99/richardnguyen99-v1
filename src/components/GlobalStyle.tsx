@@ -78,6 +78,9 @@ const GlobalStyle = createGlobalStyle`
       props.theme.mode === 'light' ? '#222222' : '#d7dadc'};
     --Theme-Blockquote--Background: ${(props): string =>
       props.theme.mode === 'light' ? '#dae0e6' : '#030303'};
+    --Theme-Link--Color: ${(props): string =>
+      props.theme.mode === 'light' ? '#222222' : '#d7dadc'};
+    --Theme-Link__MailTo--Color__gradient: linear-gradient(to right, #52c234, #061700);
   }
 
   a {
