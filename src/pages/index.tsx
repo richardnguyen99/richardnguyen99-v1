@@ -1,169 +1,75 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
+import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
-import { IndexQueryQuery } from '../graphql-types'
-import useLocalStorage from '../hooks/useLocalStorage'
-import Avatar from '../components/graphql/Avatar'
-import Card from '../components/Card'
-import Layout from '../components/Layout'
-import SEO from '../components/SEO'
+import { Hero, About, Blog, Project } from '@components/sections'
+import { SEO, Layout } from '@components'
+
+// eslint-disable-next-line import/extensions
+import { IndexQueryQuery } from '@/graphql-types'
 import Container from '../components/Container'
-import SectionMain from '../components/SectionMain'
-import SectionHero from '../components/SectionHero'
-import Row from '../components/Row'
-import Col from '../components/Col'
-import Typer from '../components/Typer'
-import Em from '../components/Em'
-import Parallax from '../components/Parallax'
-import Slider from '../components/Slider'
-import PostList from '../components/PostList'
 
 interface IndexPageProps {
   data: IndexQueryQuery
 }
+
+const StyledMainContainer = styled(Container)`
+  counter-reset: section;
+`
 
 /** Index / Landing page
  * The source code of index page '/'
  */
 const IndexPage: React.FC<IndexPageProps> = ({
   data: {
+    placeholderImage: { childImageSharp },
     latest: { edges },
+    github: {
+      user: { repositories },
+    },
   },
 }) => {
-  const [theme] = useLocalStorage('theme', 'light')
-
   return (
     <Layout>
       <SEO title="Home" />
       {/* Modify y-axis (height) to create a parallax scrolling effect */}
-      <Parallax>
-        <SectionHero>
-          <Container>
-            <Row>
-              <Col lg={12}>
-                <div>
-                  <p
-                    style={{
-                      fontWeight: 400,
-                      marginTop: 0,
-                      textTransform: 'uppercase',
-                      letterSpacing: '6px',
-                      paddingBottom: '1rem',
-                    }}
-                  >
-                    Hello, World!
-                  </p>
-                  <h1
-                    style={{
-                      fontSize: '3.75rem',
-                      fontWeight: 900,
-                    }}
-                  >
-                    It&apos;s&nbsp;
-                    <Em
-                      spacing={8}
-                      top={0.25}
-                      bottom={-0.05}
-                      color={theme === 'light' ? '#4100f5' : '#ffcdd2'}
-                      background={theme === 'light' ? '#ffcdd2' : '#4100f5'}
-                    >
-                      Richard!
-                    </Em>
-                    <br />-
-                  </h1>
-                  <div>
-                    <Typer dataText={['Python and Javascript', 'blogs too.']} />
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </SectionHero>
-      </Parallax>
-      <SectionMain>
-        <Container style={{ paddingTop: '2rem' }}>
-          <Row>
-            <Col lg={8}>
-              <div>
-                <h1>
-                  <Em
-                    spacing={4}
-                    top={0.55}
-                    bottom={0.1}
-                    color={theme === 'light' ? '#4100f5' : '#ffcdd2'}
-                    background={theme === 'light' ? '#ffcdd2' : '#4100f5'}
-                  >
-                    Myself
-                  </Em>
-                </h1>
-                <p style={{ textAlign: 'justify' }}>
-                  I was never the best in schools or classes. I&apos;m just a
-                  boy with a high curiosity. Web technology is one of my
-                  interests. I usually take notes of important things.
-                  That&apos;s why I created this blog to not only store
-                  everything that I&apos;ve learned but also share these things
-                  to everyone having the same problems.&nbsp;
-                </p>
-              </div>
-            </Col>
-            <Col lg={4}>
-              <Card style={{ textAlign: 'center' }}>
-                <Avatar />
-                <hr />
-                <h6 style={{ paddingTop: '1rem' }}>Richard Nguyen, 20</h6>
-                <p style={{ fontSize: '0.75rem' }}>
-                  Student. Vietnamese. Web development.{' '}
-                  <span style={{ fontWeight: 600 }}>Kent, WA.</span>
-                </p>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={12}>
-              <div>
-                <h1>
-                  <Em
-                    spacing={4}
-                    top={0.55}
-                    bottom={0.1}
-                    color={theme === 'light' ? '#4100f5' : '#ffcdd2'}
-                    background={theme === 'light' ? '#ffcdd2' : '#4100f5'}
-                  >
-                    Stacks
-                  </Em>
-                </h1>
-                <p>All techniques I feel comfortable the most with</p>
-              </div>
-              <Slider mode={theme} />
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={12}>
-              <div>
-                <h1>
-                  <Em
-                    spacing={4}
-                    top={0.55}
-                    bottom={0.1}
-                    color={theme === 'light' ? '#4100f5' : '#ffcdd2'}
-                    background={theme === 'light' ? '#ffcdd2' : '#4100f5'}
-                  >
-                    Blogs
-                  </Em>
-                </h1>
-              </div>
-              <PostList postEdges={edges} />
-            </Col>
-          </Row>
-        </Container>
-      </SectionMain>
+      <StyledMainContainer>
+        <Hero />
+        <About img={childImageSharp} />
+        <Blog edges={edges} />
+        <Project repositories={repositories} />
+      </StyledMainContainer>
     </Layout>
   )
 }
 
 export const pageQuery = graphql`
   query IndexQuery {
+    defaultCover: file(relativePath: { eq: "website-success.png" }) {
+      childImageSharp {
+        fluid(quality: 100) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    githubCovers: allImageSharp {
+      edges {
+        node {
+          fluid(quality: 100) {
+            ...GatsbyImageSharpFluid
+            originalName
+          }
+        }
+      }
+    }
+    placeholderImage: file(relativePath: { eq: "avatar.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 300, quality: 100) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
     latest: allMdx(
       limit: 5
       sort: { fields: [frontmatter___date], order: DESC }
@@ -185,6 +91,36 @@ export const pageQuery = graphql`
               }
             }
             date
+          }
+          timeToRead
+          excerpt
+        }
+      }
+    }
+    github {
+      user(login: "richardnguyen99") {
+        repositories(
+          first: 1
+          orderBy: { field: STARGAZERS, direction: DESC }
+        ) {
+          edges {
+            node {
+              name
+              url
+              description
+              stargazers(last: 10) {
+                totalCount
+              }
+              repositoryTopics(last: 3) {
+                edges {
+                  node {
+                    topic {
+                      name
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

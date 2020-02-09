@@ -13,6 +13,22 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint',
   ],
+  settings: {
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+    'import/resolver': {
+      'node': {
+        'extensions': [
+          '.js',
+          '.jsx',
+          '.ts',
+          '.tsx'
+        ]
+      }
+    },
+    react: {
+      version: 'detect',
+    },
+  },
   rules: {
     /**
      * @description rules of eslint official
@@ -23,6 +39,7 @@ module.exports = {
      */
     'import/named': 'off',
     'import/export': 'error',
+    'import/no-unresolved': 'off',
     'import/prefer-default-export': 'error', // Allow single Named-export
     'no-unused-expressions': [
       'error',
@@ -78,12 +95,4 @@ module.exports = {
       },
     ],
   },
-  overrides: [
-    {
-      files: ['**/*.js'],
-      rules: {
-        strict: 'off',
-      },
-    },
-  ],
 }

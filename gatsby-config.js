@@ -1,3 +1,6 @@
+require(`dotenv`).config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 const emoji = require(`remark-emoji`)
 
 module.exports = {
@@ -25,6 +28,17 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: `Github`,
+        fieldName: `github`,
+        url: `https://api.github.com/graphql`,
+        headers: {
+          Authorization: `Bearer ${process.env.GATSBY_GITHUB_KEY}`
+        }
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
@@ -37,6 +51,13 @@ module.exports = {
         name: `thumbnail`,
         path: `${__dirname}/content/thumbnails`,
       },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images-content`,
+        path:  `${__dirname}/content/images`,
+      }
     },
     {
       resolve: `gatsby-plugin-mdx`,

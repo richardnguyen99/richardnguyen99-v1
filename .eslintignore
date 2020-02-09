@@ -7,3 +7,5 @@ src/graphql-types.ts
 
 **/gatsby-*.js
 **/.eslintrc.js
+
+src/graphql-types-gitignore.ts

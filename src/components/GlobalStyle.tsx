@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
+import { FontFaces, TransitionStyles, variables } from '@styles'
+
 const GlobalStyle = createGlobalStyle`
   /**  Reboot CSS
    *
@@ -11,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
    * More information: https://github.com/necolas/normalize.css
    *
    =============================================================*/
+  ${FontFaces}
   @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=cyrillic,cyrillic-ext,latin-ext,vietnamese');
 
@@ -18,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
   *,*::before,*::after {
     outline: none;
     box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   /* Root
@@ -32,6 +39,9 @@ const GlobalStyle = createGlobalStyle`
   :root {
     font-size: 16px; /* 1 */
 
+    ${variables.FontFace}
+    ${variables.TextColor}
+    ${variables.Transitions}
     /* Create root variables to avoid styling with props */ /* 2 */
     --Theme-Body--Background: ${(props): string =>
       props.theme.mode === 'light' ? '#ffffff' : '#1a1a1b'};
@@ -220,6 +230,8 @@ const GlobalStyle = createGlobalStyle`
     cursor: help; /* 3 */
     text-decoration-skip-ink: none; /* 4 */
   }
+
+  ${TransitionStyles}
 
   /** Code's styles
    *

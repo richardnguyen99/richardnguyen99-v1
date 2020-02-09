@@ -3,6 +3,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 const _tags = {
+  webpack: {
+    bg: '#8ED5FA',
+    color: '#1C78C0',
+  },
+  python: {
+    bg: '#FFD43B',
+    color: '#306998',
+  },
   javascript: {
     bg: '#f0db4f',
     color: '#323330',

@@ -61,3 +61,34 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 }
+
+exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /scrollreveal/,
+            use: loaders.null(),
+          }
+        ]
+      }
+    })
+  }
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src/'),
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@styles': path.resolve(__dirname, 'src/styles'),
+        '@pages': path.resolve(__dirname, 'src/pages'),
+        '@hooks': path.resolve(__dirname, 'src/hooks'),
+        '@context': path.resolve(__dirname, 'src/contenxt'),
+        '@types': path.resolve(__dirname, 'src/@types'),
+        '@templates': path.resolve(__dirname, 'src/templates'),
+        '@fonts': path.resolve(__dirname, 'src/fonts'),
+        '@utils': path.resolve(__dirname, 'src/utils'),
+      }
+    }
+  })
+}

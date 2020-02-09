@@ -9,12 +9,31 @@
     "lib": ["dom", "esnext"],
     "typeRoots": ["./node_modules/@types", "./src/@types"],
     "types": ["styled-components", "react", "react-dom", "node"],
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"],
+      "@styles": ["styles"],
+      "@styles/*": ["styles/*"],
+      "@components": ["components"],
+      "@components/*": ["components/*"],
+      "@hooks": ["hooks"],
+      "@pages": ["pages"],
+      "@context": ["context"],
+      "@fonts/*": ["fonts/*"],
+      "@utils": ["utils"],
+      "@utils/*": ["utils/*"]
+    },
     "noEmit": true,
     "sourceMap": true,
     "esModuleInterop": true,
     "noUnusedLocals": false
   },
   "compileOnSave": false,
-  "exclude": ["node_modules", "public", ".cache"],
+  "exclude": [
+    "node_modules",
+    "public",
+    ".cache",
+    "src/graphql-types-gitignore.ts"
+  ],
   "include": ["./src"]
 }

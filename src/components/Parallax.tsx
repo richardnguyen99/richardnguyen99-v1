@@ -17,14 +17,14 @@ const StyledParallax = styled.div<ParallaxProps>`
   }
 `
 
-const Parallax: React.FC = ({ children }) => {
+const Parallax: React.FC<{global?: boolean}> = ({ children, global=false }) => {
   // Create a state that takes window height position
   // to modify height of some elements in order to create
   // parallax scrolling
   const [height, setHeight] = React.useState<number>(0)
 
   const handleHeight = (): void => {
-    setHeight(window.pageYOffset || document.documentElement.scrollTop)
+    setHeight(global ? (height + 1) : window.pageYOffset || document.documentElement.scrollTop)
   }
 
   React.useEffect(() => {

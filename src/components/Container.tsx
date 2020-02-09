@@ -13,6 +13,8 @@ const Container = styled.div`
 
   ${media.sm`max-width: 540px;`}
   ${media.md`max-width: 720px;`}
+  ${media.lg`max-width: 968px;`}
+  ${media.xl`max-width: 1040px;`}
 `
 
 export default Container
