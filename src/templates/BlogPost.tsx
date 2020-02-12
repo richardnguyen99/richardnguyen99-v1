@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
@@ -8,8 +9,6 @@ import Layout from '../components/Layout'
 import Container from '../components/Container'
 import Row from '../components/Row'
 import Col from '../components/Col'
-import SectionTitle from '../components/SectionTitle'
-import SectionMain from '../components/SectionMain'
 import SEO from '../components/SEO'
 import PostTags from '../components/PostTags'
 
@@ -17,11 +16,43 @@ interface PostTemplateProps {
   data: BlogPostQueryQuery
 }
 
+const StyledPostTitle = styled.section`
+  display: flex;
+  align-items: center;
+
+  position: relative;
+  height: 70vh;
+
+  padding-top: 2rem;
+  margin: 0;
+
+  color: var(--Theme-Body__text);
+  background: var(--Theme-Body__backGround);
+`
+
+const StyledPostContent = styled.section`
+  position: relative;
+  max-width: 720px;
+
+  padding-top: 1rem;
+  margin-top: -2.5rem;
+  margin-right: auto;
+  margin-bottom: 0rem;
+  margin-left: auto;
+
+  color: var(--Theme-Body__text);
+  background: var(--Theme-Body__background);
+
+  border-top: 1px solid var(--Theme-Body__postLine);
+
+  overflow: hidden;
+`
+
 const PostTemplate: React.FC<PostTemplateProps> = ({ data: { mdx } }) => {
   return (
     <Layout>
       <SEO title={mdx.frontmatter.title} />
-      <SectionTitle>
+      <StyledPostTitle>
         <Container>
           <Row>
             <Col lg={3}>
@@ -46,12 +77,12 @@ const PostTemplate: React.FC<PostTemplateProps> = ({ data: { mdx } }) => {
             </Col>
           </Row>
         </Container>
-      </SectionTitle>
-      <SectionMain>
+      </StyledPostTitle>
+      <StyledPostContent>
         <Container>
           <MDXRenderer>{mdx?.body}</MDXRenderer>
         </Container>
-      </SectionMain>
+      </StyledPostContent>
     </Layout>
   )
 }

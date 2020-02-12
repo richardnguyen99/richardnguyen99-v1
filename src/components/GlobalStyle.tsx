@@ -42,6 +42,7 @@ const GlobalStyle = createGlobalStyle`
     ${variables.FontFace}
     ${variables.TextColor}
     ${variables.Transitions}
+    ${variables.GlobalStyle}
     /* Create root variables to avoid styling with props */ /* 2 */
     --Theme-Body--Background: ${(props): string =>
       props.theme.mode === 'light' ? '#ffffff' : '#1a1a1b'};

@@ -6,6 +6,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { media } from '@styles'
+
 interface TyperProps {
   dataText: string[]
   title?: string
@@ -16,19 +18,20 @@ interface TyperProps {
  *
  * Do not modify Typer's styles inside itself
  */
-const StyledTyper = styled.h3`
-  font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 1.75rem;
-  font-weight: 400;
-  height: 100%;
-  margin: 0;
-  display: inline-block;
-  position: relative;
+const StyledTyper = styled.h1`
+  color: var(--Theme-Body__text--tint20);
 
-  @media screen and (max-width: 576px) {
-    font-size: 1.25rem;
-  }
+  line-height: 1.2;
+  min-height: 96px;
+
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -4px;
+
+  ${media.sm`font-size: 3.125rem;`}
+  ${media.md`font-size: 3.75rem;`}
+  ${media.lg`font-size: 4.375rem;`}
+  ${media.xl`font-size: 5rem;`}
 `
 
 const Typer: React.FC<TyperProps> = ({ dataText, title = '' }) => {
@@ -85,7 +88,6 @@ const Typer: React.FC<TyperProps> = ({ dataText, title = '' }) => {
 
   return (
     <StyledTyper>
-      I write&nbsp;
       {title}
       {text}
     </StyledTyper>

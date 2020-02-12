@@ -13,7 +13,7 @@ const Heading = styled.h3`
 
   font-size: 1rem;
 
-  color: var(--Theme-Body__Text);
+  color: var(--Theme-Body__text);
 
   ${media.lg`font-size: 1.5rem;`}
 
@@ -26,7 +26,7 @@ const Heading = styled.h3`
     font-size: 0.75rem;
     font-family: var(--Theme-Body__Font--monospace);
     font-weight: normal;
-    color: var(--Theme-Body__Text);
+    color: var(--Theme-Body__text);
 
     ${media.lg`font-size: 1.25rem;`}
   }
@@ -36,7 +36,7 @@ const Heading = styled.h3`
     display: block;
     height: 2px;
     width: 100%;
-    background-color: var(--Theme-Section--postLine);
+    background-color: var(--Theme-Heading__postLine);
     position: relative;
     top: 2px;
 

@@ -5,7 +5,7 @@ import {
   FlattenSimpleInterpolation,
 } from 'styled-components'
 
-import { breakpoints } from '../components/themes/breakpoints'
+import { breakpoints } from '@styles'
 
 const media = Object.keys(breakpoints).reduce(
   (

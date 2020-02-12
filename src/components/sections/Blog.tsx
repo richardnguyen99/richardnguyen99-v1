@@ -17,13 +17,11 @@ interface BlogProps {
 const StyledContainer = styled.section`
   position: relative;
 
-  min-height: 100vh;
-
   padding: 10rem 0;
 `
 
 const StyledDescription = styled.p`
-  color: var(--Theme-Body__Text);
+  color: var(--Theme-Body__text);
   font-weight: 900;
 `
 
@@ -43,12 +41,12 @@ const StyledPostGrid = styled.ul`
 `
 
 const StyledPostItem = styled.li`
-  box-shadow: var(--Theme-Section--BoxShadow);
-  border: 1px solid var(--Theme-Section--postLine);
+  box-shadow: var(--Theme-Body__boxShadow);
+  border: 1px solid var(--Theme-Body__postLine);
   border-radius: 8px;
 
-  background: var(--Theme-Body--Background);
-  color: var(--Theme-Body--Text);
+  background: var(--Theme-Body__background);
+  color: var(--Theme-Body__text);
 
   transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
 
@@ -72,7 +70,7 @@ const StyledPostIcon = styled(Img)`
 `
 
 const StyledPostSubDescription = styled.p`
-  color: var(--Theme-Body--Text);
+  color: var(--Theme-Body--text);
 
   margin-top: 0;
 
@@ -81,7 +79,7 @@ const StyledPostSubDescription = styled.p`
 `
 
 const StyledPostTitle = styled.h3`
-  color: var(--Theme-Body--Text);
+  color: var(--Theme-Body__text);
 
   font-size: 1rem;
   font-weight: 600;

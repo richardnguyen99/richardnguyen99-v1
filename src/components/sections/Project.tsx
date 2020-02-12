@@ -39,7 +39,7 @@ const StyledLabel = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
   font-family: var(--Theme-Body__Font--monospace);
-  color: var(--Theme-Body--Text);
+  color: var(--Theme-Body__text);
 
   margin-top: 0;
   padding: 2rem 0;
@@ -59,8 +59,8 @@ const StyledStar = styled.span`
   font-size: 0.875rem;
   font-weight: 700;
 
-  background: var(--Theme-Body--Background);
-  color: var(--Theme-Body--Text);
+  background: var(--Theme-Body__background);
+  color: var(--Theme-Body__text);
 
   border-radius: 4px;
 `
@@ -69,15 +69,15 @@ const StyledDescription = styled.div`
   position: relative;
   z-index: 2;
 
-  background: var(--Theme-Body--Background);
-  color: var(--Theme-Body--Text);
+  background: var(--Theme-Body__background);
+  color: var(--Theme-Body__text);
 
   padding: 2rem;
 
   border-radius: 8px;
 
-  box-shadow: var(--Theme-Section--BoxShadow);
-  border: 2px solid var(--Theme-Section--postLine);
+  box-shadow: var(--Theme-Body__boxShadow);
+  border: 2px solid var(--Theme-Body__postLine);
 `
 
 const StyledTagsContainer = styled.ul`
@@ -99,8 +99,8 @@ const StyledTag = styled.span`
   font-size: 0.875rem;
   font-weight: 700;
 
-  background: var(--Theme-Body--Text);
-  color: var(--Theme-Body--Background);
+  background: var(--Theme-Body__text);
+  color: var(--Theme-Body__background);
 
   border-radius: 4px;
 
@@ -166,12 +166,12 @@ const StyledProjectMobile = styled.ul`
 `
 
 const StyledListProjectMobile = styled.li`
-  box-shadow: var(--Theme-Section--BoxShadow);
-  border: 1px solid var(--Theme-Section--postLine);
+  box-shadow: var(--Theme-Body__boxShadow);
+  border: 1px solid var(--Theme-Body__postLine);
   border-radius: 8px;
 
-  background: var(--Theme-Body--Background);
-  color: var(--Theme-Body--Text);
+  background: var(--Theme-Body__background);
+  color: var(--Theme-Body__text);
 
   transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
 

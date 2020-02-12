@@ -21,8 +21,6 @@ const StyledContainer = styled.section`
 
   position: relative;
 
-  min-height: 100vh;
-
   padding: 10rem 0;
 `
 
@@ -60,7 +58,7 @@ const StyledSkillItem = styled.li`
   font-family: var(--Theme-Body__Font--monospace);
   font-size: 0.75rem;
 
-  color: var(--Theme-Body__Text);
+  color: var(--Theme-Body__text);
 
   &:before {
     content: '»';
@@ -94,7 +92,7 @@ const StyledAvatar = styled(Img)`
   transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   &:hover {
-    box-shadow: var(--Theme-Section--BoxShadow);
+    box-shadow: var(--Theme-Body__boxShadow);
   }
 `
 
@@ -124,7 +122,7 @@ const StyledAvatarFrame = styled.div`
     mix-blend-mode: normal;
   }
   &:after {
-    border: 4px solid var(--Theme-Body--Text);
+    border: 4px solid var(--Theme-Body__text);
     top: 20px;
     left: 20px;
     z-index: -1;
@@ -145,7 +143,7 @@ const StyledAvatarFrame = styled.div`
 `
 
 const StyledDescription = styled.p`
-  color: var(--Theme-Body__Text);
+  color: var(--Theme-Body__text);
   font-weight: 400;
 `
 

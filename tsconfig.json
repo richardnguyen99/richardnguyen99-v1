@@ -19,6 +19,7 @@
       "@hooks": ["hooks"],
       "@pages": ["pages"],
       "@context": ["context"],
+      "@context/*": ["context/*"],
       "@fonts/*": ["fonts/*"],
       "@utils": ["utils"],
       "@utils/*": ["utils/*"]
