@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import Octicon, { ChevronDown } from '@primer/octicons-react'
 
 import { media } from '@styles'
-import { Container, ProgressBar } from '@components'
+import { ProgressBar } from '@components'
 
 // Define interface for Header to type-check params
 interface HeaderProps {
@@ -14,6 +14,21 @@ interface HeaderProps {
 interface NavbarProps {
   transparent: boolean
 }
+
+const StyledContainer = styled.div`
+  width: 100%;
+
+  /* Justify container's content to center */
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  ${media.sm`max-width: 540px;`}
+  ${media.md`max-width: 720px;`}
+  ${media.lg`max-width: 968px;`}
+  ${media.xl`max-width: 1040px;`}
+`
 
 const StyledNav = styled.ul`
   /* Use flex utilities to control alignments */
@@ -236,31 +251,29 @@ const StyledNavbar = styled.nav<NavbarProps>`
   transition: padding 0.4s linear;
 
   /* Redeclare because flex properties aren't not inherited */
-  ${Container} {
+  ${StyledContainer} {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    ${media.lg`flex-flow: nowrap;`}
+  }
+
+  ${StyledNav} {
+    ${media.lg`flex-direction: row;`}
+  }
+
+  ${StyledCollapse} {
+    ${media.lg`display: flex;`}
+  }
+
+  ${StyledToggler} {
+    ${media.lg`display: none;`}
   }
 
   ${media.lg`
     flex-flow: row nowrap;
     justify-content: flex-start;
-
-    ${StyledNav} {
-      flex-direction: row;
-    }
-
-    ${Container} {
-      flex-flow: nowrap;
-    }
-
-    ${StyledCollapse} {
-      display: flex;
-    }
-
-    ${StyledToggler} {
-      display: none;
-    }
   `}
 `
 
@@ -314,7 +327,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
     <header id="header-global">
       <ProgressBar />
       <StyledNavbar transparent={transparent}>
-        <Container>
+        <StyledContainer>
           <StyledBrand as={Link} to="/">
             RICHARD
           </StyledBrand>
@@ -340,7 +353,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
               </StyledNavItem>
             </StyledNav>
           </StyledCollapse>
-        </Container>
+        </StyledContainer>
       </StyledNavbar>
     </header>
   )

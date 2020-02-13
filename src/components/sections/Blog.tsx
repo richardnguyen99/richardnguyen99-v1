@@ -42,7 +42,7 @@ const StyledPostGrid = styled.ul`
 
 const StyledPostItem = styled.li`
   box-shadow: var(--Theme-Body__boxShadow);
-  border: 1px solid var(--Theme-Body__postLine);
+  border: var(--Theme-Body__postLine);
   border-radius: 8px;
 
   background: var(--Theme-Body__background);

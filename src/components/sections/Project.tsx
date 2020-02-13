@@ -75,9 +75,9 @@ const StyledDescription = styled.div`
   padding: 2rem;
 
   border-radius: 8px;
+  border: var(--Theme-Body__postLine);
 
   box-shadow: var(--Theme-Body__boxShadow);
-  border: 2px solid var(--Theme-Body__postLine);
 `
 
 const StyledTagsContainer = styled.ul`
