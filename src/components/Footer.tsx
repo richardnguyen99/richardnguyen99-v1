@@ -1,78 +1,140 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import Octicon, { Star, RepoForked } from '@primer/octicons-react'
 
-import Container from './Container'
-import Row from './Row'
-import Col from './Col'
-
-import MailTo from './MailTo'
-import Facebook from './svg/Facebook'
-import Twitter from './svg/Twitter'
-import Github from './svg/Github'
-import useLocalStorage from '../hooks/useLocalStorage'
+import { media } from '@styles'
+import { useLocalStorage } from '@hooks'
+import { Facebook, Twitter, Github } from '@components/svg'
 
 const StyledFooter = styled.footer`
-  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  flex-direction: column;
 
-  background: var(--Theme-Body--Background);
-  color: var(--Theme-Body--Text);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  background: var(--Theme-Body--Text);
+  color: var(--Theme-Body--Background);
 `
 
-const P = styled.p`
+const StyledFooterContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0 auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  ${media.sm`max-width: 540px;`}
+  ${media.md`max-width: 720px;`}
+  ${media.lg`max-width: 968px;`}
+  ${media.xl`max-width: 1040px;`}
+`
+
+const StyledParagraph = styled.p`
+  margin: 0;
   font-size: 0.875rem;
+
+  a {
+    font-family: 'SF Mono', monospace;
+    font-weight: 600;
+    text-decoration: underline;
+
+    color: var(--Theme-Body--Background);
+  }
+`
+
+const StyledInlineBlock = styled.div`
+  display: inline-block;
+
+  font-size: 0.75rem;
+
+  padding-left: 0.5rem;
+
+  svg {
+    margin-left: 0.25rem;
+  }
+`
+
+const StyledInlineFlex = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  svg {
+    width: 1rem;
+
+    margin-left: 0.5rem;
+  }
+`
+
+const StyledFlexGroup = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+
+  &#always {
+    margin: 0 auto;
+
+    ${media.xl`
+      margin: 0;
+    `}
+  }
+
+  &#wide {
+    display: none;
+
+    ${media.xl`
+      display: flex;
+      flex-flow: row nowrap;
+    `}
+  }
 `
 
 const Footer: React.FC = () => {
-  const [mode] = useLocalStorage('theme', 'light')
+  const [theme] = useLocalStorage('theme', 'light')
+  const data = useStaticQuery(graphql`
+    query MyQuery {
+      github {
+        repository(name: "richardnguyen99", owner: "richardnguyen99") {
+          stargazers(first: 10) {
+            totalCount
+          }
+          forkCount
+          url
+        }
+      }
+    }
+  `)
 
   return (
     <StyledFooter>
-      <Container>
-        <Row>
-          <Col lg={6}>
-            <h3>Contact me</h3>
-            <P>
-              If you&apos;re interesting in me and my works, or want to shoot
-              the breeze, please fire off an e-mail.
-            </P>
-            <MailTo href="mailto:richard.ng0616@gmail.com">Contact me</MailTo>
-          </Col>
-          <Col style={{ textAlign: 'right' }} lg={6}>
-            <h3>See me more</h3>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                marginTop: '1em',
-                flexDirection: 'row-reverse',
-              }}
-            >
-              <a
-                style={{ width: '24px', height: '24px', marginRight: '1rem' }}
-                href="https://facebook.com"
-              >
-                <Facebook mode={mode} />
-              </a>
-              <a
-                style={{ width: '24px', height: '24px', marginRight: '1rem' }}
-                href="https://facebook.com"
-              >
-                <Twitter mode={mode} />
-              </a>
-              <a
-                style={{ width: '24px', height: '24px', marginRight: '1rem' }}
-                href="https://facebook.com"
-              >
-                <Github mode={mode} />
-              </a>
-            </div>
-            <P>@Richard Nguyen - all right reserved.</P>
-          </Col>
-        </Row>
-      </Container>
+      <StyledFooterContainer>
+        <StyledFlexGroup id="always">
+          <StyledParagraph>
+            Built by <a href={data.github.repository.url}>@richardnguyen</a>
+          </StyledParagraph>
+          <StyledInlineBlock>
+            {data.github.repository.stargazers.totalCount}
+            <Octicon icon={Star} />
+          </StyledInlineBlock>
+          <StyledInlineBlock>
+            {data.github.repository.forkCount}
+            <Octicon icon={RepoForked} />
+          </StyledInlineBlock>
+        </StyledFlexGroup>
+        <StyledFlexGroup id="wide">
+          <StyledParagraph>See me more at</StyledParagraph>
+          <StyledInlineFlex>
+            <Facebook mode={theme === 'light' ? 'dark' : 'light'} />
+            <Twitter mode={theme === 'light' ? 'dark' : 'light'} />
+            <Github mode={theme === 'light' ? 'dark' : 'light'} />
+          </StyledInlineFlex>
+        </StyledFlexGroup>
+      </StyledFooterContainer>
     </StyledFooter>
   )
 }

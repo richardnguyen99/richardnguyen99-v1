@@ -26,10 +26,11 @@ export const GlobalStyle = css`
   --Theme-Body__background: ${(props): string =>
     props.theme.mode === 'light' ? '#ffffff' : '#1a1a1b'};
   --Theme-Body__boxShadow: ${(props): string =>
-    props.theme.mode === 'light' ? '0px 10px 30px rgba(57, 56, 61, 0.205)' : 'none'};
+    props.theme.mode === 'light'
+      ? '0px 10px 30px rgba(57, 56, 61, 0.205)'
+      : 'none'};
   --Theme-Code__text--inLine: ${(props): string =>
     props.theme.mode === 'light' ? '#222222' : '#d7dadc'};
   --Theme-Code__background--inLine: ${(props): string =>
     props.theme.mode === 'light' ? '#222222' : '#d7dadc'};
-
 `

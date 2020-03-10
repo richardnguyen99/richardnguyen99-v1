@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
-import { Hero, About, Blog, Project } from '@components/sections'
+import { Hero, About, Blog, Project, Contact } from '@components/sections'
 import { SEO, Layout } from '@components'
 
 // eslint-disable-next-line import/extensions
@@ -39,6 +39,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
         <About img={childImageSharp} />
         <Blog edges={edges} />
         <Project repositories={repositories} />
+        <Contact />
       </StyledMainContainer>
     </Layout>
   )
@@ -100,7 +101,7 @@ export const pageQuery = graphql`
     github {
       user(login: "richardnguyen99") {
         repositories(
-          first: 1
+          first: 2
           orderBy: { field: STARGAZERS, direction: DESC }
         ) {
           edges {

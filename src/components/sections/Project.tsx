@@ -247,7 +247,6 @@ const Project: React.FC<ProjectProps> = ({ repositories }) => {
           {repos.map(({ node }) => {
             const {
               name,
-              url,
               description,
               stargazers: { totalCount },
               repositoryTopics: { edges },

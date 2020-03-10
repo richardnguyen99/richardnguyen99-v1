@@ -202,14 +202,25 @@ const Hero: React.FC = () => {
   )
 
   const Name: React.FC = () => (
-    <StyledName style={{ transitionDelay: '200ms' }}>Richard Nguyen.</StyledName>
+    <StyledName style={{ transitionDelay: '200ms' }}>
+      Richard Nguyen.
+    </StyledName>
   )
 
-  const Title: React.FC = () => (!isWide ?
-    (<StyledTitle style={{ transitionDelay: '300ms' }}>
-      I love building webs.
-    </StyledTitle>) : (<Typer dataText={['I love building webs.', 'I write in Python', 'and Javascript, too!']}/>)
-  )
+  const Title: React.FC = () =>
+    !isWide ? (
+      <StyledTitle style={{ transitionDelay: '300ms' }}>
+        I love building webs.
+      </StyledTitle>
+    ) : (
+      <Typer
+        dataText={[
+          'I love building webs.',
+          'I write in Python',
+          'and Javascript, too!',
+        ]}
+      />
+    )
 
   const Description: React.FC = () => (
     <StyledDescription style={{ transitionDelay: '400ms' }}>
@@ -225,15 +236,27 @@ const Hero: React.FC = () => {
   const SocialMedia: React.FC = () => (
     <StyledSocialMediaContaier style={{ transition: '500ms' }}>
       <StyledSocialMediaLink>
-        <Facebook id="fb" defaultLight mode={theme} />
+        <Facebook
+          id="fb"
+          defaultLight
+          mode={theme === 'light' ? 'dark' : 'light'}
+        />
         <span>&nbsp;&nbsp;/richardn1999</span>
       </StyledSocialMediaLink>
       <StyledSocialMediaLink>
-        <Twitter id="tw" defaultLight mode={theme} />
+        <Twitter
+          id="tw"
+          defaultLight
+          mode={theme === 'light' ? 'dark' : 'light'}
+        />
         <span>&nbsp;&nbsp;Twitter</span>
       </StyledSocialMediaLink>
       <StyledSocialMediaLink>
-        <Github id="gh" defaultLight mode={theme} />
+        <Github
+          id="gh"
+          defaultLight
+          mode={theme === 'light' ? 'dark' : 'light'}
+        />
         <span>&nbsp;&nbsp;/richardnguyen99</span>
       </StyledSocialMediaLink>
     </StyledSocialMediaContaier>
